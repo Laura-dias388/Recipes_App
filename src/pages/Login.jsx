@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-// import useLocalStorage from '../hooks/useLocalStorage';
+import useLocalStorage from '../hooks/useLocalStorage';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [isEnterDisabled, setIsEnterDisabled] = useState(true);
-  // const [user, setUser] = useLocalStorage('user', {});
-  // const [mealsToken, setMealsToken] = useLocalStorage('mealsToken', 0);
-  // const [drinksToken, setDrinksToken] = useLocalStorage('drinksToken', 0);
+  const [user, setUser] = useLocalStorage('user', {});
   const history = useHistory();
 
   const validateEmail = (emailToValidate) => /\S+@\S+\.\S+/.test(emailToValidate);
+  useLocalStorage('mealsToken', 1);
+  useLocalStorage('drinksToken', 1);
 
   useEffect(() => {
     const MIN_PASSWORD_LENGTH = 6;
@@ -22,15 +22,17 @@ function Login() {
     ].every(Boolean);
 
     setIsEnterDisabled(!isTrue);
+    setUser({ email });
   }, [email, password]);
 
   const handlerButton = () => {
     // setUser({ email });
     // setMealsToken(1);
     // setDrinksToken(1);
-    localStorage.setItem('user', JSON.stringify({ email }));
-    localStorage.setItem('mealsToken', 1);
-    localStorage.setItem('drinksToken', 1);
+    // localStorage.setItem('user', JSON.stringify({ email }));
+    // localStorage.setItem('mealsToken', 1);
+    // localStorage.setItem('drinksToken', 1);
+    console.log(user);
 
     history.push('/meals');
   };
