@@ -1,4 +1,5 @@
 import { useState } from 'react';
+// import RecipeContext from '../context/Context';
 
 export default function SearchBar() {
   /*  const URL_BASE = `https://www.themealdb.com/api/json/v1/1/`;
