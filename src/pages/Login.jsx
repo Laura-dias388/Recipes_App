@@ -26,14 +26,8 @@ function Login() {
   }, [email, password]);
 
   const handlerButton = () => {
-    // setUser({ email });
-    // setMealsToken(1);
-    // setDrinksToken(1);
-    // localStorage.setItem('user', JSON.stringify({ email }));
-    // localStorage.setItem('mealsToken', 1);
-    // localStorage.setItem('drinksToken', 1);
-
     history.push('/meals');
+    console.log(user);
   };
 
   return (
