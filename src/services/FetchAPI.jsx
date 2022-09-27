@@ -57,3 +57,23 @@ export const fetchDrinksFirstLetter = async (query) => {
     return error;
   }
 };
+
+export const fetchMeals = async () => {
+  try {
+    const data = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+    const response = await data.json();
+    return response.meals;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const fetchDrinks = async () => {
+  try {
+    const data = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+    const response = await data.json();
+    return response.drinks;
+  } catch (error) {
+    return error;
+  }
+};
