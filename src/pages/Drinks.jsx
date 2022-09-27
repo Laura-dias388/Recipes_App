@@ -1,13 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Recipes from '../components/Recipes';
+import Cards from '../components/Cards';
+import fetchRecipe from '../services/FetchAPI';
+
+const MAX_CARDS = 12;
 
 function Drinks() {
+  const [recipeListDrink, setRecipeListDrink] = useState([]);
+
+  useEffect(() => {
+    const newFetch = async () => {
+      const fetchRecipeOfAPI = await fetchRecipe('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+      setRecipeListDrink(fetchRecipeOfAPI.drinks.slice(0, MAX_CARDS));
+    };
+    newFetch();
+  }, []);
+
   return (
     <div>
       <Header />
       <Recipes />
+      {recipeListDrink.length > 0 && recipeListDrink
+        .map((recipe, index) => (
+          <Cards key={ recipe.idDrink } index={ index } recipe={ recipe } />))}
       <Footer />
     </div>
   );

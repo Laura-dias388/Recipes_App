@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 import RecipeContext from './Context';
-import fetchRecipe from '../services/FetchAPI';
+// import fetchRecipe from '../services/FetchAPI';
 
 function Provider({ children }) {
-  const URL_BASE_MEAL = 'https://www.themealdb.com/api/json/v1/1/';
+  // const URL_BASE_MEAL = 'https://www.themealdb.com/api/json/v1/1/';
   // const URL_BASE_DRINK = 'https://www.thecocktaildb.com/api/json/v1/1/';
   // const URL_INGREDIENT = 'filter.php?i=';
   // const URL_NAME = 'search.php?s=';
   // const URL_FIRST_LETTER = 'search.php?f=';
 
-  const [urlToFetch, setUrlToFetch] = useState({
+  /* const [urlToFetch, setUrlToFetch] = useState({
     urlBase: URL_BASE_MEAL,
     urlTypeFilter: '',
     urlInput: '',
@@ -25,11 +25,8 @@ function Provider({ children }) {
   useEffect(() => {
     setData(fetchRecipe(urlToFetch));
   }, [url]);
-
+ */
   const recipesValues = useMemo(() => ({
-    data,
-    url,
-    setUrlToFetch,
   }));
 
   return (

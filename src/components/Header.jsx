@@ -10,7 +10,6 @@ function Header() {
   const [isSerachBarVisible, setIsSerachBarVisible] = useState(false);
   let title = '';
   let isBtnSearchVisible = true;
-  console.log(location);
 
   if (location.pathname === '/meals') title = 'Meals';
   if (location.pathname === '/drinks') title = 'Drinks';
