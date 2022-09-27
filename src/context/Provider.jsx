@@ -1,18 +1,30 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import RecipeContext from './Context';
 import {
   // fetchRecipe,
   fetchMealsIngredient, fetchMealsName,
   fetchMealsFirstLetter, fetchDrinksIngredients,
-  fetchDrinksName, fetchDrinksFirstLetter,
+  fetchDrinksName, fetchDrinksFirstLetter, fetchMeals, fetchDrinks,
 } from '../services/FetchAPI';
 
 function Provider({ children }) {
   const [searchMealsResponse, setSearchMealsResponse] = useState([]);
   console.log(searchMealsResponse);
+
   const [searchDrinksResponse, setSearchDrinksResponse] = useState([]);
   console.log(searchDrinksResponse);
+
+  async function fetchInitial() {
+    const fetchMealsData = await fetchMeals();
+    setSearchMealsResponse(fetchMealsData);
+    const fetchDrinksData = await fetchDrinks();
+    setSearchDrinksResponse(fetchDrinksData);
+  }
+
+  useEffect(() => {
+    fetchInitial();
+  }, []);
 
   async function fetchMealsSearch(query) {
     const { checkSearch, inputValue } = query;

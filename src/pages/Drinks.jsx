@@ -5,12 +5,12 @@ import Recipes from '../components/Recipes';
 import Cards from '../components/Cards';
 import RecipeContext from '../context/Context';
 
-// const MAX_CARDS = 12;
+const MAX_CARDS = 12;
 
 function Drinks() {
   const { searchDrinksResponse } = useContext(RecipeContext);
   console.log('teste cardD', searchDrinksResponse);
-  const recipeListDrink = searchDrinksResponse.slice(0, 12) || [];
+  const recipeListDrink = searchDrinksResponse.slice(0, MAX_CARDS);
 
   return (
     <div>
