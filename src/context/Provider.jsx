@@ -11,7 +11,7 @@ import {
 function Provider({ children }) {
   const [searchMealsResponse, setSearchMealsResponse] = useState([]);
   console.log(searchMealsResponse);
-  const [searchDrinksResponse, setSearchDrinksResponse] = useState({});
+  const [searchDrinksResponse, setSearchDrinksResponse] = useState([]);
   console.log(searchDrinksResponse);
 
   async function fetchMealsSearch(query) {
@@ -56,6 +56,10 @@ function Provider({ children }) {
   const recipesValues = useMemo(() => ({
     fetchMealsSearch,
     fetchDrinksSearch,
+    searchMealsResponse,
+    setSearchMealsResponse,
+    searchDrinksResponse,
+    setSearchDrinksResponse,
   }));
 
   return (

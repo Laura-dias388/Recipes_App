@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Recipes from '../components/Recipes';
 import Cards from '../components/Cards';
-import fetchRecipe from '../services/FetchAPI';
+import RecipeContext from '../context/Context';
 
-const MAX_CARDS = 12;
+// const MAX_CARDS = 12;
 
 function Drinks() {
-  const [recipeListDrink, setRecipeListDrink] = useState([]);
-
-  useEffect(() => {
-    const newFetch = async () => {
-      const fetchRecipeOfAPI = await fetchRecipe('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-      setRecipeListDrink(fetchRecipeOfAPI.drinks.slice(0, MAX_CARDS));
-    };
-    newFetch();
-  }, []);
+  const { searchDrinksResponse } = useContext(RecipeContext);
+  console.log('teste cardD', searchDrinksResponse);
+  const recipeListDrink = searchDrinksResponse.slice(0, 12) || [];
 
   return (
     <div>
