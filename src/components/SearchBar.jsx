@@ -1,4 +1,9 @@
-import { useState } from 'react';
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { useLocation } from 'react-router-dom';
+
+import RecipeContext from '../context/Context';
+
 // import RecipeContext from '../context/Context';
 
 export default function SearchBar() {
@@ -7,31 +12,36 @@ export default function SearchBar() {
   const URL_NAME = `search.php?s=`;
   const URL_FIRST_LETTER = `search.php?f=`;
  */
-  const [searchType, setSearchType] = useState('name');
-  const [searchInput, setSearchInput] = useState('');
+  const { fetchMealsSearch, fetchDrinksSearch } = useContext(RecipeContext);
+  const { register, handleSubmit, reset } = useForm();
+  const { pathname } = useLocation();
 
-  const handlerButton = () => {
-    /*  if (searchType === 'ingredient') {
-      const URL = `${URL_BASE}${URL_INGREDIENT}${searchInput}`;
+  function handleFilterSearchSubmit(data) {
+    if (data.checkSearch === 'first-letter' && data.inputValue.length > 1) {
+      reset();
+      return alert('Your search must have only 1 (one) character');
     }
-    if (searchType === 'name') {
-      const URL = `${URL_BASE}${URL_NAME}${searchInput}`;
+
+    if (pathname === '/meals') {
+      fetchMealsSearch(data);
+      reset();
     }
-    if (searchType === 'firstLetter') {
-      const URL = `${URL_BASE}${URL_FIRST_LETTER}${searchInput}`;
-    } */
-  };
+
+    if (pathname === '/drinks') {
+      fetchDrinksSearch(data);
+      reset();
+    }
+  }
 
   return (
-    <div>
+    <form onSubmit={ handleSubmit(handleFilterSearchSubmit) }>
       <input
         data-testid="search-input"
         type="text"
-        name="search-input"
         placeholder="Type Your Search"
-        value={ searchInput }
-        onChange={ ({ target }) => setSearchInput(target) }
+        { ...register('inputValue') }
       />
+
       <label htmlFor="ingredient">
         <input
           data-testid="ingredient-search-radio"
@@ -39,20 +49,19 @@ export default function SearchBar() {
           name="radio-options"
           value="ingredient"
           id="ingredient"
-          checked={ searchType === 'ingredient' }
-          onChange={ ({ target }) => setSearchType(target.value) }
+          { ...register('checkSearch') }
         />
         Ingredient
       </label>
+
       <label htmlFor="search">
         <input
           data-testid="name-search-radio"
           type="radio"
           name="radio-options"
-          value="search"
+          value="name"
           id="search"
-          checked={ searchType === 'search' }
-          onChange={ ({ target }) => setSearchType(target.value) }
+          { ...register('checkSearch') }
         />
         Name
       </label>
@@ -63,18 +72,16 @@ export default function SearchBar() {
           name="radio-options"
           value="first-letter"
           id="first-letter"
-          checked={ searchType === 'first-letter' }
-          onChange={ ({ target }) => setSearchType(target.value) }
+          { ...register('checkSearch') }
         />
         First Letter
       </label>
       <button
         data-testid="exec-search-btn"
-        type="button"
-        onClick={ handlerButton }
+        type="submit"
       >
         Enviar
       </button>
-    </div>
+    </form>
   );
 }
