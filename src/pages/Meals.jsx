@@ -1,25 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useContext } from 'react';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import Recipes from '../components/Recipes';
 import Cards from '../components/Cards';
-// import RecipeContext from '../context/Context';
-import fetchRecipe from '../services/FetchAPI';
+import RecipeContext from '../context/Context';
 
 const MAX_CARDS = 12;
 
 function Meals() {
-  // const { recipeCard, setRecipeCard } = useContext(RecipeContext);
-  const [recipeList, setRecipeList] = useState([]);
-
-  useEffect(() => {
-    const newFetch = async () => {
-      const fetchRecipeOfAPI = await fetchRecipe('https://www.themealdb.com/api/json/v1/1/search.php?s=');
-      setRecipeList(fetchRecipeOfAPI.meals.slice(0, MAX_CARDS));
-    };
-    newFetch();
-  }, []);
-  // const recipeList = newFetch();
+  const { searchMealsResponse } = useContext(RecipeContext);
+  console.log('teste Card', searchMealsResponse);
+  const recipeList = searchMealsResponse.slice(0, MAX_CARDS);
 
   return (
     <div>
