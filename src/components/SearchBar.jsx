@@ -4,8 +4,6 @@ import { useLocation } from 'react-router-dom';
 
 import RecipeContext from '../context/Context';
 
-// import RecipeContext from '../context/Context';
-
 export default function SearchBar() {
   /*  const URL_BASE = `https://www.themealdb.com/api/json/v1/1/`;
   const URL_INGREDIENT = `filter.php?i=`;
