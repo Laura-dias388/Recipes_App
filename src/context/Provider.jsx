@@ -41,13 +41,16 @@ function Provider({ children }) {
 
     if (response === null) {
       setSearchMealsResponse([]);
+      console.log('null');
       return alert('Sorry, we haven\'t found any recipes for these filters.');
     }
 
     if (response.length === 1) {
       const filterId = response.map((state) => state.idMeal).toString();
       setSearchMealsResponse(response);
+      console.log('1', searchMealsResponse, response);
       history.push(`/meals/${filterId}`);
+      console.log('2', searchMealsResponse);
     } else {
       setSearchMealsResponse(response);
     }
@@ -86,17 +89,20 @@ function Provider({ children }) {
     if (response.length === 1) {
       const filterId = response.map((state) => state.idDrink).toString();
       setSearchDrinksResponse(response);
+      console.log('1', searchDrinksResponse);
       history.push(`/drinks/${filterId}`);
+      console.log('2', searchDrinksResponse);
     } else {
       setSearchDrinksResponse(response);
     }
   }
 
   async function fetchInitial() {
-    const fetchMealsData = await fetchMeals();
-    setSearchMealsResponse(fetchMealsData);
-    const fetchDrinksData = await fetchDrinks();
-    setSearchDrinksResponse(fetchDrinksData);
+    // const fetchMealsData = await fetchMeals();
+    // setSearchMealsResponse(fetchMealsData);
+    // const fetchDrinksData = await fetchDrinks();
+    // setSearchDrinksResponse(fetchDrinksData);
+    console.log('inicial');
   }
 
   useEffect(() => {

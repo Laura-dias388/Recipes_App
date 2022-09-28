@@ -1,22 +1,20 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router-dom';
-import RecipeContext from '../context/Context';
+import { useLocation, useHistory } from 'react-router-dom';
 
 function Cards({ recipe, index, id }) {
-  const { fetchMealsSearch,
-    fetchDrinksSearch,
-
-  } = useContext(RecipeContext);
   const location = useLocation();
+  const history = useHistory();
 
   const handlerClick = () => {
     if (location.pathname === '/meals') {
-      fetchMealsSearch({ checkSearch: 'id', inputValue: id });
+      // fetchMealsSearch({ checkSearch: 'id', inputValue: id });
+      history.push(`/meals/${id}`);
     }
 
     if (location.pathname === '/drinks') {
-      fetchDrinksSearch({ checkSearch: 'id', inputValue: id });
+      // fetchDrinksSearch({ checkSearch: 'id', inputValue: id });
+      history.push(`/drinks/${id}`);
     }
   };
 
