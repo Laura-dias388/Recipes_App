@@ -144,7 +144,6 @@ describe('Testes para o componente SerachBar', () => {
     userEvent.click(btn);
 
     expect(screen.queryByTestId(radio)).toBeChecked();
-
     userEvent.click(btn);
 
     await waitFor(() => expect(global.fetch).toHaveBeenCalled());
