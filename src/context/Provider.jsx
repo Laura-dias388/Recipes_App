@@ -1,8 +1,8 @@
 import React, { useState, useMemo, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RecipeContext from './Context';
 import {
-  // fetchRecipe,
   fetchMealsIngredient, fetchMealsName,
   fetchMealsFirstLetter, fetchDrinksIngredients,
   fetchDrinksName, fetchDrinksFirstLetter, fetchMeals, fetchDrinks,
@@ -10,10 +10,78 @@ import {
 
 function Provider({ children }) {
   const [searchMealsResponse, setSearchMealsResponse] = useState([]);
-  console.log(searchMealsResponse);
-
   const [searchDrinksResponse, setSearchDrinksResponse] = useState([]);
-  console.log(searchDrinksResponse);
+  const history = useHistory();
+
+  async function fetchMealsSearch(query) {
+    const { checkSearch, inputValue } = query;
+    let response = [];
+
+    switch (checkSearch) {
+    case 'ingredient':
+      response = await fetchMealsIngredient(inputValue);
+      break;
+
+    case 'name':
+      response = await fetchMealsName(inputValue);
+      break;
+
+    case 'first-letter':
+      response = await fetchMealsFirstLetter(inputValue);
+      break;
+
+    default:
+      response = [];
+    }
+
+    if (response === null) {
+      setSearchMealsResponse([]);
+      return alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
+
+    if (response.length === 1) {
+      const filterId = response.map((state) => state.idMeal).toString();
+      setSearchMealsResponse(response);
+      history.push(`/meals/${filterId}`);
+    } else {
+      setSearchMealsResponse(response);
+    }
+  }
+
+  async function fetchDrinksSearch(query) {
+    const { inputValue, checkSearch } = query;
+    let response = [];
+
+    switch (checkSearch) {
+    case 'ingredient':
+      response = await fetchDrinksIngredients(inputValue);
+      break;
+
+    case 'name':
+      response = await fetchDrinksName(inputValue);
+      break;
+
+    case 'first-letter':
+      response = await fetchDrinksFirstLetter(inputValue);
+      break;
+
+    default:
+      response = [];
+    }
+
+    if (response === null) {
+      setSearchDrinksResponse([]);
+      return alert('Sorry, we haven\'t found any recipes for these filters.');
+    }
+
+    if (response.length === 1) {
+      const filterId = response.map((state) => state.idDrink).toString();
+      setSearchDrinksResponse(response);
+      history.push(`/drinks/${filterId}`);
+    } else {
+      setSearchDrinksResponse(response);
+    }
+  }
 
   async function fetchInitial() {
     const fetchMealsData = await fetchMeals();
@@ -25,45 +93,6 @@ function Provider({ children }) {
   useEffect(() => {
     fetchInitial();
   }, []);
-
-  async function fetchMealsSearch(query) {
-    const { checkSearch, inputValue } = query;
-
-    if (checkSearch === 'ingredient') {
-      const response = await fetchMealsIngredient(inputValue);
-
-      setSearchMealsResponse(response);
-    }
-
-    if (checkSearch === 'name') {
-      const response = await fetchMealsName(inputValue);
-
-      setSearchMealsResponse(response);
-    }
-    if (checkSearch === 'first-letter') {
-      const response = await fetchMealsFirstLetter(inputValue);
-
-      setSearchMealsResponse(response);
-    }
-  }
-
-  async function fetchDrinksSearch(query) {
-    const { inputValue, checkSearch } = query;
-
-    if (checkSearch === 'ingredient') {
-      const response = await fetchDrinksIngredients(inputValue);
-      setSearchDrinksResponse(response);
-    }
-    if (checkSearch === 'name') {
-      const response = await fetchDrinksName(inputValue);
-      setSearchDrinksResponse(response);
-    }
-    if (checkSearch === 'first-letter') {
-      const response = await fetchDrinksFirstLetter(inputValue);
-      console.log(inputValue);
-      setSearchDrinksResponse(response);
-    }
-  }
 
   const recipesValues = useMemo(() => ({
     fetchMealsSearch,
