@@ -6,6 +6,7 @@ import {
   fetchMealsIngredient, fetchMealsName,
   fetchMealsFirstLetter, fetchDrinksIngredients,
   fetchDrinksName, fetchDrinksFirstLetter, fetchMeals, fetchDrinks,
+  fetchDrinkId, fetchMealId,
 } from '../services/FetchAPI';
 
 function Provider({ children }) {
@@ -28,6 +29,10 @@ function Provider({ children }) {
 
     case 'first-letter':
       response = await fetchMealsFirstLetter(inputValue);
+      break;
+
+    case 'id':
+      response = await fetchMealId(inputValue);
       break;
 
     default:
@@ -63,6 +68,10 @@ function Provider({ children }) {
 
     case 'first-letter':
       response = await fetchDrinksFirstLetter(inputValue);
+      break;
+
+    case 'id':
+      response = await fetchDrinkId(inputValue);
       break;
 
     default:

@@ -18,7 +18,12 @@ function Drinks() {
       <Recipes />
       {recipeListDrink.length > 0 && recipeListDrink
         .map((recipe, index) => (
-          <Cards key={ recipe.idDrink } index={ index } recipe={ recipe } />))}
+          <Cards
+            key={ recipe.idDrink }
+            index={ index }
+            recipe={ recipe }
+            id={ recipe.idDrink }
+          />))}
       <Footer />
     </div>
   );
