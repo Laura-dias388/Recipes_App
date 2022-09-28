@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RecipeContext from './Context';
@@ -90,14 +90,14 @@ function Provider({ children }) {
     fetchInitial();
   }, []);
 
-  const recipesValues = useMemo(() => ({
+  const recipesValues = {
     fetchMealsSearch,
     fetchDrinksSearch,
     searchMealsResponse,
     setSearchMealsResponse,
     searchDrinksResponse,
     setSearchDrinksResponse,
-  }));
+  };
 
   return (
     <RecipeContext.Provider value={ recipesValues }>

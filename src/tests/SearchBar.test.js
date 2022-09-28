@@ -4,10 +4,10 @@ import userEvent from '@testing-library/user-event';
 import renderWithRouter from './helpers/renderWithRouter';
 import App from '../App';
 
-const meals = require('../../cypress/mocks/meals');
-const result = require('../../cypress/mocks/beefMeals');
-const drinks = require('../../cypress/mocks/drinks');
-const resultDrinks = require('../../cypress/mocks/cocktailDrinks');
+import meals from '../../cypress/mocks/meals';
+import result from '../../cypress/mocks/beefMeals';
+import drinks from '../../cypress/mocks/drinks';
+import resultDrinks from '../../cypress/mocks/cocktailDrinks';
 
 const SEARCH_TOP_BTN = 'search-top-btn';
 const SEARCH_INPUT = 'search-input';
