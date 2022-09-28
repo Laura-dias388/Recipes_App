@@ -4,7 +4,6 @@ import { useLocation } from 'react-router-dom';
 
 function Cards({ recipe, index, id }) {
   const location = useLocation();
-  console.log('card', recipe);
   return (
     <div data-testid={ `${index}-recipe-card` }>
       {location.pathname === '/meals' || location.pathname === `/meals/${id}`

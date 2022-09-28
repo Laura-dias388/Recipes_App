@@ -20,7 +20,8 @@ export default function SearchBar() {
   function handleFilterSearchSubmit(data) {
     if (data.checkSearch === 'first-letter' && data.inputValue.length > 1) {
       reset();
-      return alert('Your search must have only 1 (one) character');
+      global.alert('Your search must have only 1 (one) character');
+      return null;
     }
 
     if (pathname === '/meals') {

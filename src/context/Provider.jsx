@@ -26,17 +26,15 @@ function Provider({ children }) {
       response = await fetchMealsName(inputValue);
       break;
 
-    case 'first-letter':
-      response = await fetchMealsFirstLetter(inputValue);
-      break;
-
     default:
-      response = [];
+      response = await fetchMealsFirstLetter(inputValue);// first letter;
+      break;
     }
 
     if (response === null) {
       setSearchMealsResponse([]);
-      return alert('Sorry, we haven\'t found any recipes for these filters.');
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      return null;
     }
 
     if (response.length === 1) {
@@ -61,17 +59,15 @@ function Provider({ children }) {
       response = await fetchDrinksName(inputValue);
       break;
 
-    case 'first-letter':
-      response = await fetchDrinksFirstLetter(inputValue);
-      break;
-
     default:
-      response = [];
+      response = await fetchDrinksFirstLetter(inputValue); // first letter;
+      break;
     }
 
     if (response === null) {
       setSearchDrinksResponse([]);
-      return alert('Sorry, we haven\'t found any recipes for these filters.');
+      global.alert('Sorry, we haven\'t found any recipes for these filters.');
+      return null;
     }
 
     if (response.length === 1) {
