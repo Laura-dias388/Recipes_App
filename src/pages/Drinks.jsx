@@ -9,8 +9,8 @@ const MAX_CARDS = 12;
 
 function Drinks() {
   const { searchDrinksResponse } = useContext(RecipeContext);
-  console.log('teste cardD', searchDrinksResponse);
-  const recipeListDrink = searchDrinksResponse.slice(0, MAX_CARDS);
+  const recipeListDrink = searchDrinksResponse.length > 1
+    && searchDrinksResponse.slice(0, MAX_CARDS);
 
   return (
     <div>

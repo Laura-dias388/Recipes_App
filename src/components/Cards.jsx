@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { useLocation } from 'react-router-dom';
 
-function Cards({ recipe, index }) {
+function Cards({ recipe, index, id }) {
   const location = useLocation();
   console.log('card', recipe);
   return (
     <div data-testid={ `${index}-recipe-card` }>
-      {location.pathname === '/meals'
+      {location.pathname === '/meals' || location.pathname === `/meals/${id}`
         ? (
           <div>
             <img
@@ -39,6 +39,7 @@ Cards.propTypes = {
     strDrinkThumb: PropTypes.string.isRequired,
     strDrink: PropTypes.string.isRequired,
   }).isRequired,
+  id: PropTypes.string.isRequired,
 };
 
 export default Cards;

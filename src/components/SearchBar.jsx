@@ -10,7 +10,10 @@ export default function SearchBar() {
   const URL_NAME = `search.php?s=`;
   const URL_FIRST_LETTER = `search.php?f=`;
  */
-  const { fetchMealsSearch, fetchDrinksSearch } = useContext(RecipeContext);
+  const { fetchMealsSearch,
+    fetchDrinksSearch,
+
+  } = useContext(RecipeContext);
   const { register, handleSubmit, reset } = useForm();
   const { pathname } = useLocation();
 
