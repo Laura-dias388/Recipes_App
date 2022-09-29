@@ -92,6 +92,7 @@ export const fetchDrinkId = async (id) => {
   try {
     const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${id}`);
     const response = await data.json();
+    console.log('fetch', response.drinks);
     return response.drinks;
   } catch (error) {
     return error;
