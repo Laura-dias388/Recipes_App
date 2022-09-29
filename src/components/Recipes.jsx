@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { useLocation } from 'react-router-dom';
+import * as ToggleGroup from '@radix-ui/react-toggle-group';
+import RecipeContext from '../context/Context';
 
 export default function Recipes() {
-  const location = useLocation();
+  const { pathname } = useLocation();
   const categoryMeals = ['All', 'Beef', 'Breakfast', 'Chicken', 'Dessert', 'Goat'];
   const categoryDrinks = [
     'All',
@@ -11,20 +13,34 @@ export default function Recipes() {
     'Shake',
     'Other/Unknown',
     'Cocoa'];
-  const categoryList = location.pathname === '/meals'
+  const categoryList = pathname === '/meals'
     ? categoryMeals : categoryDrinks;
 
+  const { fetchCategoryMealsSearch,
+    fetchCategoryDrinksSearch } = useContext(RecipeContext);
+
+  function handleCategorySearch(data) {
+    if (pathname === '/meals') {
+      fetchCategoryMealsSearch(data);
+    } else {
+      fetchCategoryDrinksSearch(data);
+    }
+  }
+
   return (
-    <div>
+    <ToggleGroup.Root
+      type="single"
+      onValueChange={ (value) => handleCategorySearch(value) }
+    >
       {categoryList.map((category) => (
-        <button
+        <ToggleGroup.Item
           data-testid={ `${category}-category-filter` }
-          type="button"
           key={ category }
+          value={ category }
         >
-          { category }
-        </button>
+          {category}
+        </ToggleGroup.Item>
       ))}
-    </div>
+    </ToggleGroup.Root>
   );
 }
