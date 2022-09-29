@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RecipeContext from './Context';
@@ -150,10 +150,6 @@ function Provider({ children }) {
     setSearchDrinksResponse(filteredDrinks);
   }
 
-  useEffect(() => {
-    fetchInitial();
-  }, []);
-
   const recipesValues = useMemo(() => ({
     fetchMealsSearch,
     fetchDrinksSearch,
@@ -164,6 +160,7 @@ function Provider({ children }) {
     fetchCategoryMealsSearch,
     fetchCategoryDrinksSearch,
     createRecipeItems,
+    fetchInitial,
   }));
 
   return (
