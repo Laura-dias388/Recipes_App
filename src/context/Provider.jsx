@@ -162,18 +162,18 @@ function Provider({ children }) {
     setSearchDrinksResponse(filteredDrinks);
   }
 
-  const recipesValues = useMemo(() => ({
+  const recipesValues = {
     fetchMealsSearch,
     fetchDrinksSearch,
     searchMealsResponse,
     setSearchMealsResponse,
     searchDrinksResponse,
     setSearchDrinksResponse,
-fetchCategoryMealsSearch,
+    fetchCategoryMealsSearch,
     fetchCategoryDrinksSearch,
     createRecipeItems,
-    fetchInitial,
-  }));
+  };
+
 
   return (
     <RecipeContext.Provider value={ recipesValues }>

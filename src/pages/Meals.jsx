@@ -9,14 +9,10 @@ import RecipeContext from '../context/Context';
 const MAX_CARDS = 12;
 
 function Meals() {
-  const { searchMealsResponse, fetchInitial } = useContext(RecipeContext);
+  const { searchMealsResponse } = useContext(RecipeContext);
   const recipeList = searchMealsResponse.length > 0
     && searchMealsResponse.slice(0, MAX_CARDS);
   console.log(searchMealsResponse);
-
-  useEffect(() => {
-    fetchInitial();
-  }, []);
 
   return (
     <div>
