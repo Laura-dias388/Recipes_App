@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -10,7 +10,6 @@ const MAX_CARDS = 12;
 
 function Drinks() {
   const { searchDrinksResponse } = useContext(RecipeContext);
-
   const recipeListDrink = searchDrinksResponse.length > 0
     && searchDrinksResponse.slice(0, MAX_CARDS);
 

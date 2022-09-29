@@ -58,11 +58,13 @@ function CardId(props) {
       setRecipesId(recipes);
     } else {
       const response = await fetchSearchDrinksId(id);
+      console.log(response);
+
       const recipes = createRecipeItemsId(response);
+      console.log(recipes);
       setRecipesId(recipes);
     }
   }
-  console.log(recipesId);
 
   useEffect(() => {
     SetRecipes();
@@ -102,6 +104,7 @@ function CardId(props) {
           )}
         </div>
       ))}
+
     </div>
   );
 }

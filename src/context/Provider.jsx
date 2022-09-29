@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo } from 'react';
 import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RecipeContext from './Context';
@@ -51,6 +51,14 @@ function Provider({ children }) {
       response = await fetchMealsName(inputValue);
       break;
 
+    case 'first-letter':
+      response = await fetchMealsFirstLetter(inputValue);
+      break;
+
+    case 'id':
+      response = await fetchMealId(inputValue);
+      break;
+
     default:
       response = await fetchMealsFirstLetter(inputValue);// first letter;
       break;
@@ -84,6 +92,14 @@ function Provider({ children }) {
 
     case 'name':
       response = await fetchDrinksName(inputValue);
+      break;
+
+    case 'first-letter':
+      response = await fetchDrinksFirstLetter(inputValue);
+      break;
+
+    case 'id':
+      response = await fetchDrinkId(inputValue);
       break;
 
     default:
@@ -146,10 +162,6 @@ function Provider({ children }) {
     setSearchDrinksResponse(filteredDrinks);
   }
 
-  useEffect(() => {
-    fetchInitial();
-  }, []);
-
   const recipesValues = {
     fetchMealsSearch,
     fetchDrinksSearch,
@@ -161,6 +173,7 @@ function Provider({ children }) {
     fetchCategoryDrinksSearch,
     createRecipeItems,
   };
+
 
   return (
     <RecipeContext.Provider value={ recipesValues }>
