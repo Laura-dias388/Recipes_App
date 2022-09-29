@@ -47,6 +47,7 @@ function CardId(props) {
       });
       return itemRecipe;
     }
+    console.log(query);
     return query;
   }
 
