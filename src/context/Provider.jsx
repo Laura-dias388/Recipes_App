@@ -1,17 +1,42 @@
 import React, { useState, useMemo, useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import RecipeContext from './Context';
 import {
   fetchMealsIngredient, fetchMealsName,
   fetchMealsFirstLetter, fetchDrinksIngredients,
   fetchDrinksName, fetchDrinksFirstLetter, fetchMeals, fetchDrinks,
+  fetchCategoryMealsRequest, fetchCategoryDrinksRequest,
 } from '../services/FetchAPI';
 
 function Provider({ children }) {
   const [searchMealsResponse, setSearchMealsResponse] = useState([]);
   const [searchDrinksResponse, setSearchDrinksResponse] = useState([]);
   const history = useHistory();
+  const { pathname } = useLocation();
+
+  function createRecipeItems(query) {
+    if (query !== null) {
+      const itemRecipe = query.map((items) => {
+        if (pathname === '/meals' || pathname === '/meals/:id') {
+          const createRecipe = {
+            id: items.idMeal,
+            name: items.strMeal,
+            image: items.strMealThumb,
+          };
+          return createRecipe;
+        }
+        const createRecipe = {
+          id: items.idDrink,
+          name: items.strDrink,
+          image: items.strDrinkThumb,
+        };
+        return createRecipe;
+      });
+      return itemRecipe;
+    }
+    return query;
+  }
 
   async function fetchMealsSearch(query) {
     const { checkSearch, inputValue } = query;
@@ -39,12 +64,14 @@ function Provider({ children }) {
       return alert('Sorry, we haven\'t found any recipes for these filters.');
     }
 
+    const filteredMeals = createRecipeItems(response);
+
     if (response.length === 1) {
       const filterId = response.map((state) => state.idMeal).toString();
-      setSearchMealsResponse(response);
+      setSearchMealsResponse(filteredMeals);
       history.push(`/meals/${filterId}`);
     } else {
-      setSearchMealsResponse(response);
+      setSearchMealsResponse(filteredMeals);
     }
   }
 
@@ -69,6 +96,8 @@ function Provider({ children }) {
       response = [];
     }
 
+    const filteredDrinks = createRecipeItems(response);
+
     if (response === null) {
       setSearchDrinksResponse([]);
       return alert('Sorry, we haven\'t found any recipes for these filters.');
@@ -76,18 +105,49 @@ function Provider({ children }) {
 
     if (response.length === 1) {
       const filterId = response.map((state) => state.idDrink).toString();
-      setSearchDrinksResponse(response);
+      setSearchDrinksResponse(filteredDrinks);
       history.push(`/drinks/${filterId}`);
     } else {
-      setSearchDrinksResponse(response);
+      setSearchDrinksResponse(filteredDrinks);
     }
   }
 
   async function fetchInitial() {
     const fetchMealsData = await fetchMeals();
-    setSearchMealsResponse(fetchMealsData);
+    const filteredMeals = createRecipeItems(fetchMealsData);
+    setSearchMealsResponse(filteredMeals);
+
     const fetchDrinksData = await fetchDrinks();
-    setSearchDrinksResponse(fetchDrinksData);
+    const filteredDrinks = createRecipeItems(fetchDrinksData);
+    setSearchDrinksResponse(filteredDrinks);
+  }
+
+  async function fetchCategoryMealsSearch(query) {
+    if (query === 'All') {
+      return fetchInitial();
+    }
+
+    if (query === '') {
+      return fetchInitial();
+    }
+
+    const response = await fetchCategoryMealsRequest(query);
+    const filteredMeals = createRecipeItems(response);
+    setSearchMealsResponse(filteredMeals);
+  }
+
+  async function fetchCategoryDrinksSearch(query) {
+    if (query === 'All') {
+      return fetchInitial();
+    }
+
+    if (query === '') {
+      return fetchInitial();
+    }
+
+    const response = await fetchCategoryDrinksRequest(query);
+    const filteredDrinks = createRecipeItems(response);
+    setSearchDrinksResponse(filteredDrinks);
   }
 
   useEffect(() => {
@@ -101,6 +161,9 @@ function Provider({ children }) {
     setSearchMealsResponse,
     searchDrinksResponse,
     setSearchDrinksResponse,
+    fetchCategoryMealsSearch,
+    fetchCategoryDrinksSearch,
+    createRecipeItems,
   }));
 
   return (

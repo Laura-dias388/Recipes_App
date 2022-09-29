@@ -77,3 +77,43 @@ export const fetchDrinks = async () => {
     return error;
   }
 };
+
+export const fetchCategoryMealsRequest = async (query) => {
+  try {
+    const data = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${query}`);
+    const response = await data.json();
+    return response.meals;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const fetchCategoryDrinksRequest = async (query) => {
+  try {
+    const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${query}`);
+    const response = await data.json();
+    return response.drinks;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const fetchSearchMealsId = async (query) => {
+  try {
+    const data = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${query}`);
+    const response = await data.json();
+    return response.meals;
+  } catch (error) {
+    return error;
+  }
+};
+
+export const fetchSearchDrinksId = async (query) => {
+  try {
+    const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${query}`);
+    const response = await data.json();
+    return response.drinks;
+  } catch (error) {
+    return error;
+  }
+};
