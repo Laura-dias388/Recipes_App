@@ -14,7 +14,6 @@ function Provider({ children }) {
   const [searchDrinksResponse, setSearchDrinksResponse] = useState([]);
   const history = useHistory();
   const { pathname } = useLocation();
-
   function createRecipeItems(query) {
     if (query !== null) {
       const itemRecipe = query.map((items) => {
@@ -37,41 +36,27 @@ function Provider({ children }) {
     }
     return query;
   }
-
   async function fetchMealsSearch(query) {
     const { checkSearch, inputValue } = query;
     let response = [];
-
     switch (checkSearch) {
     case 'ingredient':
       response = await fetchMealsIngredient(inputValue);
       break;
-
     case 'name':
       response = await fetchMealsName(inputValue);
       break;
-
     case 'first-letter':
       response = await fetchMealsFirstLetter(inputValue);
       break;
-
-    case 'id':
-      response = await fetchMealId(inputValue);
-      break;
-
     default:
-      response = await fetchMealsFirstLetter(inputValue);// first letter;
-      break;
+      response = [];
     }
-
     if (response === null) {
       setSearchMealsResponse([]);
-      global.alert('Sorry, we haven\'t found any recipes for these filters.');
-      return null;
+      return alert('Sorry, we haven\'t found any recipes for these filters.');
     }
-
     const filteredMeals = createRecipeItems(response);
-
     if (response.length === 1) {
       const filterId = response.map((state) => state.idMeal).toString();
       setSearchMealsResponse(filteredMeals);
@@ -80,41 +65,27 @@ function Provider({ children }) {
       setSearchMealsResponse(filteredMeals);
     }
   }
-
   async function fetchDrinksSearch(query) {
     const { inputValue, checkSearch } = query;
     let response = [];
-
     switch (checkSearch) {
     case 'ingredient':
       response = await fetchDrinksIngredients(inputValue);
       break;
-
     case 'name':
       response = await fetchDrinksName(inputValue);
       break;
-
     case 'first-letter':
       response = await fetchDrinksFirstLetter(inputValue);
       break;
-
-    case 'id':
-      response = await fetchDrinkId(inputValue);
-      break;
-
     default:
-      response = await fetchDrinksFirstLetter(inputValue); // first letter;
-      break;
+      response = [];
     }
-
     const filteredDrinks = createRecipeItems(response);
-
     if (response === null) {
       setSearchDrinksResponse([]);
-      global.alert('Sorry, we haven\'t found any recipes for these filters.');
-      return null;
+      return alert('Sorry, we haven\'t found any recipes for these filters.');
     }
-
     if (response.length === 1) {
       const filterId = response.map((state) => state.idDrink).toString();
       setSearchDrinksResponse(filteredDrinks);
@@ -123,45 +94,36 @@ function Provider({ children }) {
       setSearchDrinksResponse(filteredDrinks);
     }
   }
-
   async function fetchInitial() {
     const fetchMealsData = await fetchMeals();
     const filteredMeals = createRecipeItems(fetchMealsData);
     setSearchMealsResponse(filteredMeals);
-
     const fetchDrinksData = await fetchDrinks();
     const filteredDrinks = createRecipeItems(fetchDrinksData);
     setSearchDrinksResponse(filteredDrinks);
   }
-
   async function fetchCategoryMealsSearch(query) {
     if (query === 'All') {
       return fetchInitial();
     }
-
     if (query === '') {
       return fetchInitial();
     }
-
     const response = await fetchCategoryMealsRequest(query);
     const filteredMeals = createRecipeItems(response);
     setSearchMealsResponse(filteredMeals);
   }
-
   async function fetchCategoryDrinksSearch(query) {
     if (query === 'All') {
       return fetchInitial();
     }
-
     if (query === '') {
       return fetchInitial();
     }
-
     const response = await fetchCategoryDrinksRequest(query);
     const filteredDrinks = createRecipeItems(response);
     setSearchDrinksResponse(filteredDrinks);
   }
-
   const recipesValues = {
     fetchMealsSearch,
     fetchDrinksSearch,
@@ -172,18 +134,15 @@ function Provider({ children }) {
     fetchCategoryMealsSearch,
     fetchCategoryDrinksSearch,
     createRecipeItems,
+    fetchInitial,
   };
-
-
   return (
     <RecipeContext.Provider value={ recipesValues }>
       {children}
     </RecipeContext.Provider>
   );
 }
-
 Provider.propTypes = {
   children: PropTypes.node.isRequired,
 };
-
 export default Provider;
