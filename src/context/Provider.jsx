@@ -157,10 +157,10 @@ function Provider({ children }) {
     setSearchMealsResponse,
     searchDrinksResponse,
     setSearchDrinksResponse,
-fetchCategoryMealsSearch,
+    fetchCategoryMealsSearch,
     fetchCategoryDrinksSearch,
     createRecipeItems,
-  }));
+  };
 
   return (
     <RecipeContext.Provider value={ recipesValues }>

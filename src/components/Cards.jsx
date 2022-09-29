@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 function Cards({ recipe, index }) {
-return (
+  return (
     <div data-testid={ `${index}-recipe-card` }>
       <div>
         <img
