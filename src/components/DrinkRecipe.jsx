@@ -25,7 +25,7 @@ function DrinkRecipe({ recipe }) {
       <h3 data-testid="recipe-category">{recipe[0]?.strAlcoholic}</h3>
       <p data-testid="instructions">{recipe[0]?.strInstructions}</p>
       <ul>
-        {ingredients.map((ingredient, index) => ((ingredient) && (
+        {ingredients.map((ingredient, index) => (ingredient?.length > 0 && (
           <li key={ index } data-testid={ `${index}-ingredient-name-and-measure` }>
             {`${ingredient} - ${measures[index] || []}`}
           </li>
