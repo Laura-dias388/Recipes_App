@@ -6,6 +6,9 @@
     "node": "16"
   },
   "dependencies": {
+    "@radix-ui/react-popover": "1.0.0",
+    "@radix-ui/react-toggle": "^1.0.0",
+    "@radix-ui/react-toggle-group": "^1.0.0",
     "bootstrap": "^5.2.0",
     "clipboard-copy": "^4.0.1",
     "prop-types": "^15.8.1",
