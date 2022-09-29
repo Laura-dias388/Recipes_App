@@ -51,6 +51,14 @@ function Provider({ children }) {
       response = await fetchMealsName(inputValue);
       break;
 
+    case 'first-letter':
+      response = await fetchMealsFirstLetter(inputValue);
+      break;
+
+    case 'id':
+      response = await fetchMealId(inputValue);
+      break;
+
     default:
       response = await fetchMealsFirstLetter(inputValue);// first letter;
       break;
@@ -84,6 +92,14 @@ function Provider({ children }) {
 
     case 'name':
       response = await fetchDrinksName(inputValue);
+      break;
+
+    case 'first-letter':
+      response = await fetchDrinksFirstLetter(inputValue);
+      break;
+
+    case 'id':
+      response = await fetchDrinkId(inputValue);
       break;
 
     default:
