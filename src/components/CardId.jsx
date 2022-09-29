@@ -15,6 +15,9 @@ function CardId(props) {
             id: items.idMeal,
             name: items.strMeal,
             image: items.strMealThumb,
+            ingredients: Object.entries(items)
+              .filter((key) => key[0].includes('strIngredient'))
+              .map((value) => `${value[0]}: ${value[1]}`),
           };
           return createRecipe;
         }
@@ -22,6 +25,9 @@ function CardId(props) {
           id: items.idDrink,
           name: items.strDrink,
           image: items.strDrinkThumb,
+          ingredients: Object.entries(items)
+            .filter((key) => key[0].includes('strIngredient'))
+            .map((value) => `${value[0]}: ${value[1]}`),
         };
         return createRecipe;
       });
@@ -37,11 +43,13 @@ function CardId(props) {
       setRecipesId(recipes);
     } else {
       const response = await fetchSearchDrinksId(id);
+      console.log(response);
+
       const recipes = createRecipeItemsId(response);
+      console.log(recipes);
       setRecipesId(recipes);
     }
   }
-  console.log(recipesId);
 
   useEffect(() => {
     SetRecipes();
@@ -58,6 +66,7 @@ function CardId(props) {
           <p>{recipeId.name}</p>
         </div>
       ))}
+
     </div>
   );
 }
