@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import RecipeContext from '../context/Context';
-import { fetchDrinkId, fetchMealId } from '../services/FetchAPI';
+// import { fetchDrinkId, fetchMealId } from '../services/FetchAPI';
 import MealRecipe from '../components/MealRecipe';
 import DrinkRecipe from '../components/DrinkRecipe';
 

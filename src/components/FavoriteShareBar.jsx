@@ -14,7 +14,7 @@ function FavoriteShareBar({ recipe }) {
   const [isFavorite, setIsFavorite] = useState(false);
   const [favorites, setFavorites] = useLocalStorage('favoriteRecipes', []);
   const location = useLocation();
-  const isPathMeal = location.pathname.includes('meals');
+  // const isPathMeal = location.pathname.includes('meals');
   const origin = location.pathname.split('/')[1];
   const actualRecipe = {
     id: recipe.id,
