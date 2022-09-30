@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchSearchMealsId, fetchSearchDrinksId } from '../services/FetchAPI';
+import FavoriteShareBar from './FavoriteShareBar';
 
 function CardId(props) {
   const propItems = props;
@@ -30,6 +31,8 @@ function CardId(props) {
             youtube: items.strYoutube,
             ingredients: setElements(items, 'strIngredient', NUM_IGREDIENTS_MEAL),
             measures: setElements(items, 'strMeasure', NUM_IGREDIENTS_MEAL),
+            nationality: items.strArea,
+            alcoholicOrNot: '',
           };
           return createRecipe;
         }
@@ -37,10 +40,11 @@ function CardId(props) {
           id: items.idDrink,
           name: items.strDrink,
           image: items.strDrinkThumb,
-          category: items.strAlcoholic,
+          category: items.strCategory,
           instructions: items.strInstructions,
           ingredients: setElements(items, 'strIngredient', NUM_IGREDIENTS_DRINK),
           measures: setElements(items, 'strMeasure', NUM_IGREDIENTS_DRINK),
+          alcoholicOrNot: items.strAlcoholic,
         };
         console.log(createRecipe);
         return createRecipe;
@@ -74,10 +78,12 @@ function CardId(props) {
     <div>
       { recipesId.map((recipeId, index) => (
         <div key={ index }>
+          <FavoriteShareBar recipe={ recipeId } />
           <img
             data-testid="recipe-photo"
             src={ recipeId.image }
             alt=""
+            width="480"
           />
           <p data-testid="recipe-title">{recipeId.name}</p>
           <p data-testid="recipe-category">{recipeId.category}</p>
