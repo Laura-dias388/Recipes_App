@@ -106,37 +106,42 @@ function CardId(props) {
   }, []);
 
   return (
-    <div>
+    <div className={ styles.cardIdContainer }>
       { recipesId.map((recipeId, index) => (
         <div key={ index }>
           <img
             data-testid="recipe-photo"
             src={ recipeId.image }
             alt=""
+            className={ styles.cardIdContainerImg }
           />
-          <p data-testid="recipe-title">{recipeId.name}</p>
-          <p data-testid="recipe-category">{recipeId.category}</p>
-          <ul>
-            {recipeId.ingredients.map((ingredient, i) => (ingredient?.length > 0 && (
-              <li key={ i } data-testid={ `${i}-ingredient-name-and-measure` }>
-                {`${ingredient} - ${recipeId.measures[i]}`}
-              </li>
-            )))}
-          </ul>
-          <p data-testid="instructions">{recipeId.instructions}</p>
-          {isPathMeal && (
-            <iframe
-              data-testid="video"
-              width="480"
-              height="315"
-              src={ recipeId?.youtube.replace('watch?v=', 'embed/') }
-              title="YouTube video player"
-              frameBorder="0"
-              allow={ `accelerometer; autoplay; clipboard-write;
+          <div className={ styles.cardIdWrapper }>
+            <div className={ styles.cardIdWrapperContainer }>
+              <h2 data-testid="recipe-title">{recipeId.name}</h2>
+              <p data-testid="recipe-category">{recipeId.category}</p>
+              <ul>
+                {recipeId.ingredients.map((ingredient, i) => (ingredient?.length > 0 && (
+                  <li key={ i } data-testid={ `${i}-ingredient-name-and-measure` }>
+                    {`${ingredient} - ${recipeId.measures[i]}`}
+                  </li>
+                )))}
+              </ul>
+              <p data-testid="instructions">{recipeId.instructions}</p>
+              {isPathMeal && (
+                <iframe
+                  data-testid="video"
+                  width="480"
+                  height="315"
+                  src={ recipeId?.youtube.replace('watch?v=', 'embed/') }
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow={ `accelerometer; autoplay; clipboard-write;
                   encrypted-media; gyroscope; picture-in-picture` }
-              allowFullScreen
-            />
-          )}
+                  allowFullScreen
+                />
+              )}
+            </div>
+          </div>
         </div>
       ))}
       <div className={ styles.recomendationContainer }>
