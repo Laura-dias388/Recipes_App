@@ -1,0 +1,21 @@
+.recipeContainer {
+    width: 700px;
+    padding: 10px 30px;
+}
+
+.recipeContent {
+    margin-left: 10px;
+    padding: 7px 20px;
+    background-color: transparent;
+    border: none;
+    color: var(--button-secondary)
+
+    
+}
+
+.recipeContent[data-state= "on"] {
+    background-color: var(--button-primary);
+    color: var(--white);
+    border-radius: 10px;
+}
+
