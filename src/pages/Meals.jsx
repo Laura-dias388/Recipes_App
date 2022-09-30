@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Recipes from '../components/Recipes';
 import Cards from '../components/Cards';
 import RecipeContext from '../context/Context';
+import styles from '../styles/Meals.module.css';
 
 const MAX_CARDS = 12;
 
@@ -22,21 +23,23 @@ function Meals() {
     <div>
       <Header />
       <Recipes />
-      {recipeList.length > 0 && (recipeList
-        .map((recipe, index) => (
+      <div className={ styles.mealsContainer }>
+        {recipeList.length > 0 && (recipeList
+          .map((recipe, index) => (
 
-          <Link
-            key={ recipe.id }
-            to={ { pathname: `/meals/${recipe.id}`, state: { recipe, index } } }
-          >
-            <Cards
+            <Link
               key={ recipe.id }
-              index={ index }
-              recipe={ recipe }
-            />
+              to={ { pathname: `/meals/${recipe.id}`, state: { recipe, index } } }
+            >
+              <Cards
+                key={ recipe.id }
+                index={ index }
+                recipe={ recipe }
+              />
 
-          </Link>
-        )))}
+            </Link>
+          )))}
+      </div>
       <Footer />
     </div>
   );

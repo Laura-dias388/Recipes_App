@@ -1,6 +1,8 @@
+import { ArrowRight } from 'phosphor-react';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import useLocalStorage from '../hooks/useLocalStorage';
+import style from '../styles/Login.module.css';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -31,35 +33,48 @@ function Login() {
   };
 
   return (
-    <div>
-      <div>
-        <input
-          data-testid="email-input"
-          type="email"
-          name="email"
-          placeholder="Digite seu email"
-          value={ email }
-          onChange={ ({ target }) => setEmail(target.value) }
-        />
-      </div>
-      <div>
-        <input
-          data-testid="password-input"
-          type="password"
-          name="password"
-          placeholder="Digite sua senha"
-          value={ password }
-          onChange={ ({ target }) => setPassword(target.value) }
-        />
-      </div>
-      <button
-        data-testid="login-submit-btn"
-        type="button"
-        disabled={ isEnterDisabled }
-        onClick={ handlerButton }
-      >
-        Entrar
-      </button>
+    <div className={ style.loginContainer }>
+      <h2>Hello,</h2>
+      <span>Welcome back!</span>
+      <form>
+        <label htmlFor="email">
+          Email
+
+          <input
+            data-testid="email-input"
+            type="email"
+            name="email"
+            id="email"
+            placeholder="Enter email"
+            value={ email }
+            onChange={ ({ target }) => setEmail(target.value) }
+          />
+        </label>
+
+        <label htmlFor="password">
+          Password
+          <input
+            data-testid="password-input"
+            type="password"
+            name="password"
+            id="password"
+            placeholder="Enter password"
+            value={ password }
+            onChange={ ({ target }) => setPassword(target.value) }
+          />
+        </label>
+
+        <button
+          data-testid="login-submit-btn"
+          type="button"
+          disabled={ isEnterDisabled }
+          onClick={ handlerButton }
+        >
+          Sign In
+          {' '}
+          <ArrowRight size={ 16 } />
+        </button>
+      </form>
     </div>
   );
 }

@@ -5,6 +5,7 @@ import Header from '../components/Header';
 import Recipes from '../components/Recipes';
 import Cards from '../components/Cards';
 import RecipeContext from '../context/Context';
+import styles from '../styles/Drinks.module.css';
 
 const MAX_CARDS = 12;
 
@@ -21,19 +22,21 @@ function Drinks() {
     <div>
       <Header />
       <Recipes />
-      {recipeListDrink.length > 0 && recipeListDrink
-        .map((recipe, index) => (
-          <Link
-            key={ recipe.id }
-            to={ { pathname: `/drinks/${recipe.id}` } }
-          >
-            <Cards
+      <div className={ styles.drinksContainer }>
+        {recipeListDrink.length > 0 && recipeListDrink
+          .map((recipe, index) => (
+            <Link
               key={ recipe.id }
-              index={ index }
-              recipe={ recipe }
-            />
-          </Link>
-        ))}
+              to={ { pathname: `/drinks/${recipe.id}` } }
+            >
+              <Cards
+                key={ recipe.id }
+                index={ index }
+                recipe={ recipe }
+              />
+            </Link>
+          ))}
+      </div>
       <Footer />
     </div>
   );
