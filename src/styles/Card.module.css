@@ -1,0 +1,35 @@
+.cardContainer {
+  max-width: 100vh;
+  display: flex;
+
+  margin: 0 15px 15px 0;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.cardContainer img {
+  width: 150px;
+  height: 150px;
+}
+
+.cardContainer span {
+  text-decoration: none;
+  color: var(--white);
+  display: block;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 16px;
+}
+
+.cardContent {
+  width: 100%;
+  background-image: var(--gradient);
+  position: absolute;
+  padding: 7rem 1rem 1rem 1rem;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}

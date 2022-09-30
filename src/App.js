@@ -10,6 +10,7 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Provider from './context/Provider';
 import CardId from './components/CardId';
+import './global.css';
 
 function App() {
   return (

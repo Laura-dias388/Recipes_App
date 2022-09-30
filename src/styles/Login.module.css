@@ -1,0 +1,75 @@
+.loginContainer {
+  min-width: 32rem;
+  border-radius: 6px;
+  padding: 2.5rem 3rem;
+
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.loginContainer h2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 30px;
+  line-height: 45px;
+}
+
+.loginContainer span {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+}
+
+.loginContainer form {
+  margin-top: 3.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.loginContainer label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  color: var(--base-title);
+}
+
+.loginContainer input {
+  padding: 1.25rem;
+  border-radius: 10px;
+  border: 1.5px solid var(--base-border);
+  color: var(--base-title);
+  transition: 0.5s;
+  outline: none;
+}
+
+.loginContainer button {
+  background-color: var(--button-primary);
+  color: var(--white);
+  padding: 18px 85px;
+  border-radius: 10px;
+
+  gap: 11px;
+  cursor: pointer;
+  opacity: 1;
+  transition: 0.5s;
+  border: 1px solid var(--button-primary);
+}
+
+button:hover {
+  opacity: 0.8;
+}
+
+button[disabled] {
+  background-color: var(--button-disabled);
+  border:none;
+}
+
+input:focus {
+  border: 1.5px solid var(--border-hover);
+}
