@@ -1,0 +1,29 @@
+.recomendationContainer {
+    display: flex;
+    flex-direction: row;
+    height: 230px;
+    margin: 10px 0;
+    padding: 0 2rem;
+
+    overflow: scroll;
+    overflow-y: hidden;
+    width: 450px;
+    gap: 2rem;
+}
+
+.recomendationItems {
+    gap: 2rem;
+}
+
+.recomendationImg {
+    max-width: 12rem;
+}
+
+.stickyButton button {
+    position: fixed;
+    bottom: 0;
+    margin: 2rem;
+}
+
+
+    

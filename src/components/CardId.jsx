@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from 'react';
-import { fetchSearchMealsId, fetchSearchDrinksId } from '../services/FetchAPI';
+import { fetchSearchMealsId,
+  fetchSearchDrinksId,
+  fetchMeals,
+  fetchDrinks,
+} from '../services/FetchAPI';
+import styles from '../styles/CardId.module.css';
 
 function CardId(props) {
   const propItems = props;
   const { path } = propItems.match;
   const { id } = propItems.match.params;
   const [recipesId, setRecipesId] = useState([]);
+  const [recomendations, setRecomendations] = useState([]);
   const isPathMeal = path === '/meals/:id';
   const NUM_IGREDIENTS_MEAL = 20;
   const NUM_IGREDIENTS_DRINK = 15;
-
+  const NUM_SUGGESTION = 6;
   function setElements(items, element, qtd) {
     return Object.values(items || []).slice(
       Object.keys(items || []).indexOf(`${element}1`),
@@ -51,23 +57,52 @@ function CardId(props) {
     return query;
   }
 
-  async function SetRecipes() {
+  function createRecomendations(query) {
+    if (query !== null) {
+      const newRecomendations = query.map((items) => {
+        if (isPathMeal) {
+          const filtred = {
+            id: items.idDrink,
+            name: items.strDrink,
+            image: items.strDrinkThumb,
+          };
+          return filtred;
+        }
+        const filtred = {
+          id: items.idMeal,
+          name: items.strMeal,
+          image: items.strMealThumb,
+        };
+        return filtred;
+      });
+      return newRecomendations;
+    }
+    return query;
+  }
+
+  async function setRecipes() {
     if (isPathMeal) {
       const response = await fetchSearchMealsId(id);
       const recipes = createRecipeItemsId(response);
       setRecipesId(recipes);
+      const data = await fetchDrinks();
+      console.log(data);
+      const filtered = createRecomendations(data).slice(0, NUM_SUGGESTION);
+      setRecomendations(filtered);
     } else {
       const response = await fetchSearchDrinksId(id);
-      console.log(response);
-
       const recipes = createRecipeItemsId(response);
-      console.log(recipes);
       setRecipesId(recipes);
+      const data = await fetchMeals();
+      console.log(data);
+      const filtered = createRecomendations(data).slice(0, NUM_SUGGESTION);
+      setRecomendations(filtered);
     }
   }
 
+  console.log(recomendations);
   useEffect(() => {
-    SetRecipes();
+    setRecipes();
   }, []);
 
   return (
@@ -97,16 +132,42 @@ function CardId(props) {
               src={ recipeId?.youtube.replace('watch?v=', 'embed/') }
               title="YouTube video player"
               frameBorder="0"
-              allow={ `accelerometer; autoplay; clipboard-write; 
+              allow={ `accelerometer; autoplay; clipboard-write;
                   encrypted-media; gyroscope; picture-in-picture` }
               allowFullScreen
             />
           )}
         </div>
       ))}
-
+      <div className={ styles.recomendationContainer }>
+        {recomendations.map((recomendation, index = 1) => (
+          <div
+            key={ recomendation.id }
+            className={ styles.recomendationItems }
+            data-testid={ `${index}-recommendation-card` }
+          >
+            <div className={ styles.recomendation }>
+              <img
+                className={ styles.recomendationImg }
+                src={ recomendation.image }
+                alt=""
+              />
+              <span data-testid={ `${index}-recommendation-title` }>
+                {recomendation.name}
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
+      <div className={ styles.stickyButton }>
+        <button
+          data-testid="start-recipe-btn"
+          type="submit"
+        >
+          Start Recipe
+        </button>
+      </div>
     </div>
   );
 }
-
 export default CardId;
