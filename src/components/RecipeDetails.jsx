@@ -7,6 +7,7 @@ import { fetchSearchMealsId,
 } from '../services/FetchAPI';
 import styles from '../styles/CardId.module.css';
 import useLocalStorage from '../hooks/useLocalStorage';
+import FavoriteShareBar from './FavoriteShareBar';
 
 function RecipeDetails(props) {
   const propItems = props;
@@ -49,6 +50,8 @@ function RecipeDetails(props) {
             youtube: items.strYoutube,
             ingredients: setElements(items, 'strIngredient', NUM_IGREDIENTS_MEAL),
             measures: setElements(items, 'strMeasure', NUM_IGREDIENTS_MEAL),
+            nationality: items.strArea,
+            alcoholicOrNot: '',
           };
           return createRecipe;
         }
@@ -56,10 +59,11 @@ function RecipeDetails(props) {
           id: items.idDrink,
           name: items.strDrink,
           image: items.strDrinkThumb,
-          category: items.strAlcoholic,
+          category: items.strCategory,
           instructions: items.strInstructions,
           ingredients: setElements(items, 'strIngredient', NUM_IGREDIENTS_DRINK),
           measures: setElements(items, 'strMeasure', NUM_IGREDIENTS_DRINK),
+          alcoholicOrNot: items.strAlcoholic,
         };
         console.log(createRecipe);
         return createRecipe;
@@ -142,6 +146,7 @@ function RecipeDetails(props) {
     <div className={ styles.cardIdContainer }>
       { recipesId.map((recipeId, index) => (
         <div key={ index }>
+          <FavoriteShareBar recipe={ recipeId } />
           <img
             data-testid="recipe-photo"
             src={ recipeId.image }
