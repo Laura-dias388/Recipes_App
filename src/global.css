@@ -22,7 +22,8 @@
 
   --white : white;
 
-  --gradient : linear-gradient(180deg, black 0%, black 100%);
+  --gradient : linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, black 100%);
+
 }
 
 * {
