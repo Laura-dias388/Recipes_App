@@ -31,7 +31,6 @@ function Login() {
 
   const handlerButton = () => {
     history.push('/meals');
-    console.log(user);
   };
 
   return (

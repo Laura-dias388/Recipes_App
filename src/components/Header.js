@@ -7,7 +7,7 @@ import SearchBar from './SearchBar';
 function Header() {
   const location = useLocation();
   const history = useHistory();
-  const [isSerachBarVisible, setIsSerachBarVisible] = useState(false);
+  const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
   let title = '';
   let isBtnSearchVisible = true;
 
@@ -35,7 +35,7 @@ function Header() {
            && (
              <button
                type="button"
-               onClick={ () => setIsSerachBarVisible(!isSerachBarVisible) }
+               onClick={ () => setIsSearchBarVisible(!isSearchBarVisible) }
              >
                <img data-testid="search-top-btn" src={ searchIcon } alt="search" />
              </button>)}
@@ -48,7 +48,7 @@ function Header() {
         </div>
       </div>
       <div>
-        {isSerachBarVisible
+        {isSearchBarVisible
         && (
           <SearchBar />)}
       </div>

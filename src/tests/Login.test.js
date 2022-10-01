@@ -15,14 +15,16 @@ describe('Testes para a tela de Login', () => {
 
   test('valida corretamente as entradas', () => {
     // Este arquivo pode ser modificado ou deletado sem problemas
-    renderWithRouter(<App />);
+    const { history } = renderWithRouter(<App />);
 
     const email = screen.queryByTestId('email-input');
     const password = screen.queryByTestId('password-input');
-    const button = screen.getByRole('button', { name: /entrar/i });
+    const button = screen.getByRole('button', { name: /sign in/i });
 
     userEvent.type(email, 'valid@email.com');
     userEvent.type(password, '1234567');
     userEvent.click(button);
+
+    expect(history.location.pathname).toBe('/meals');
   });
 });
