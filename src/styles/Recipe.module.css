@@ -1,21 +1,20 @@
 .recipeContainer {
-    width: 700px;
-    padding: 10px 30px;
+  padding: 10px 30px;
+  width: 700px;
 }
 
 .recipeContent {
-    margin-left: 10px;
-    padding: 7px 20px;
-    background-color: transparent;
-    border: none;
-    color: var(--button-secondary)
+  background-color: transparent;
+  border: none;
+  color: var(--button-secondary);
+  margin-left: 10px;
+  padding: 7px 20px;
 
-    
 }
 
-.recipeContent[data-state= "on"] {
-    background-color: var(--button-primary);
-    color: var(--white);
-    border-radius: 10px;
+.recipeContent[ data-state = 'on' ] {
+  background-color: var(--button-primary);
+  border-radius: 10px;
+  color: var(--white);
 }
 

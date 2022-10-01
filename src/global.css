@@ -1,34 +1,46 @@
 :root {
+
   --background : #fafafa;
+
   --base-title : #121212;
+
   --base-text : #d9d9d9;
+
   --base-input : #eeeded;
-  --base-card :  #f3f2f2;
+
+  --base-card : #f3f2f2;
+
   --base-border : #d9d9d9;
+
   --border-hover : #71b1a1;
+
   --button-primary : #129575;
+
   --button-secondary : #71b1a1;
+
   --button-disabled : #d9d9d9;
+
   --white : white;
-  --gradient : linear-gradient(180deg, black 0%, #000 100%);
+
+  --gradient : linear-gradient(180deg, black 0%, black 100%);
 }
 
 * {
-    margin:0;
-    box-sizing: border-box;
-    padding:0;
-    text-decoration: none;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
 }
 
 body {
-    background: var(--background);
-    color: var(--base-title);
-    display: flex;
-    -webkit-font-smoothing: antialiased;
+  background: var(--background);
+  color: var(--base-title);
+  display: flex;
+  -webkit-font-smoothing: antialiased;
 }
 
-body, input, textarea, button{
-    font-family: 'Poppins', sans-serif;
-    font-size: 1rem;
-    font-weight: 400;
+body, input, textarea, button {
+  font-family: Poppins , sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
 }
