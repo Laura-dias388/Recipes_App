@@ -63,7 +63,7 @@ button:hover {
   opacity: 0.8;
 }
 
-button[ disabled ] {
+button:disabled {
   background-color: var(--button-disabled);
   border: none;
 }
