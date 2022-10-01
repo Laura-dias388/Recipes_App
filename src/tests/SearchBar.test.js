@@ -8,7 +8,7 @@ import meals from '../../cypress/mocks/meals';
 import result from '../../cypress/mocks/beefMeals';
 import drinks from '../../cypress/mocks/drinks';
 import resultDrinks from '../../cypress/mocks/cocktailDrinks';
-import fetchTotal from '../../cypress/mocks/fetch';
+// import fetchTotal from '../../cypress/mocks/fetch';
 
 const SEARCH_TOP_BTN = 'search-top-btn';
 const SEARCH_INPUT = 'search-input';
