@@ -11,9 +11,9 @@
 .cardIdWrapper {
     width: 100%;
     border-radius: 4rem ;
-    position:relative;
+    /* position:relative;
     z-index:1;
-    top: -10rem;
+    top: -10rem; */
     background-color: var(--white);
 }
 
@@ -62,10 +62,14 @@
     max-width: 12rem;
 }
 
-.stickyButton button {
+.stickyButton {
     position: fixed;
     bottom: 0;
     margin: 2rem;
+    }
+
+.styckyButtonDisabled {
+    display:none;
 }
 
 

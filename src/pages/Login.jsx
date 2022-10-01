@@ -6,9 +6,11 @@ import style from '../styles/Login.module.css';
 
 function Login() {
   const [email, setEmail] = useState('');
+  console.log(email);
   const [password, setPassword] = useState('');
   const [isEnterDisabled, setIsEnterDisabled] = useState(true);
   const [user, setUser] = useLocalStorage('user', {});
+  console.log(user);
   const history = useHistory();
 
   const validateEmail = (emailToValidate) => /\S+@\S+\.\S+/.test(emailToValidate);
