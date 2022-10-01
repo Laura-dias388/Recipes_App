@@ -1,8 +1,7 @@
-.mealsContainer{
-    max-width: 764px;
-    display: flex;
-    flex-wrap: wrap;
-
-    padding: 64px 30px;
-    border-radius:10px;
+.mealsContainer {
+  border-radius: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 764px;
+  padding: 64px 30px;
 }
