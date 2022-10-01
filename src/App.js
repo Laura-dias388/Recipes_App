@@ -10,7 +10,7 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Provider from './context/Provider';
 import RecipeDetails from './components/RecipeDetails';
-import RecipeProgress from './components/RecipeProgress';
+import RecipeInProgress from './pages/RecipeInProgress';
 import './global.css';
 
 function App() {
@@ -23,12 +23,12 @@ function App() {
         <Route exact path="/drinks" component={ Drinks } />
         <Route exact path="/drinks/:id" component={ RecipeDetails } />
         <Route
-          path="/bebidas/:id/in-progress"
-          component={ RecipeProgress }
+          path="/drinks/:id/in-progress"
+          component={ RecipeInProgress }
         />
         <Route
-          path="/comidas/:id/in-progress"
-          component={ RecipeProgress }
+          path="/meals/:id/in-progress"
+          component={ RecipeInProgress }
         />
 
         {/* <Route exact path="/meals/:id/in-progres" component={ MealInProgress } />
