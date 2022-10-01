@@ -25,17 +25,14 @@ function FavoriteShareBar({ recipe }) {
     image: recipe.image,
     alcoholicOrNot: recipe.alcoholicOrNot,
   };
-  // if (!isPathMeal) {
-  //   actualRecipe = { ...actualRecipe, alcoholicOrNot: recipe.alcoholicOrNot };
-  // }
 
   useEffect(() => {
     setIsFavorite((favorites || []).some((favorite) => favorite.id === recipe.id));
-    console.log('isFavorite', isFavorite);
   }, [favorites]);
 
   const copyLinkToClipboard = () => {
-    copy(`http://localhost:3000${location.pathname}`);
+    const splitedPath = location.pathname.split('/');
+    copy(`http://localhost:3000/${splitedPath[1]}/${splitedPath[2]}`);
     setDidCopyLink(true);
   };
 
