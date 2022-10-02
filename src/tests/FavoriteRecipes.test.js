@@ -1,5 +1,5 @@
 import React from 'react';
-import { getByTestId, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../App';
 import fetch from '../../cypress/mocks/fetch';
@@ -25,6 +25,7 @@ const FAVORITE_RECIPES = [
     image: 'https://www.thecocktaildb.com/images/media/drink/vyxwut1468875960.jpg',
   },
 ];
+const FAVORITE_RECIPES_LINK = '/favorite-recipes';
 
 describe('Testa a página FavoriteRecipes', () => {
   beforeEach(() => {
@@ -34,7 +35,7 @@ describe('Testa a página FavoriteRecipes', () => {
   });
 
   test('if favorite button works', async () => {
-    renderWithRouter(<App />, '/favorite-recipes');
+    renderWithRouter(<App />, FAVORITE_RECIPES_LINK);
 
     const nameList = await screen.findAllByTestId(/horizontal-name/i);
     expect(nameList).toHaveLength(2);
@@ -48,7 +49,7 @@ describe('Testa a página FavoriteRecipes', () => {
   });
 
   test('if share button works', async () => {
-    renderWithRouter(<App />, '/favorite-recipes');
+    renderWithRouter(<App />, FAVORITE_RECIPES_LINK);
 
     const nameList = await screen.findAllByTestId(/horizontal-name/i);
     expect(nameList).toHaveLength(2);
@@ -57,7 +58,7 @@ describe('Testa a página FavoriteRecipes', () => {
   });
 
   test('filter buttons', async () => {
-    renderWithRouter(<App />, '/favorite-recipes');
+    renderWithRouter(<App />, FAVORITE_RECIPES_LINK);
 
     const nameList = await screen.findAllByTestId(/horizontal-name/i);
     expect(nameList).toHaveLength(2);
