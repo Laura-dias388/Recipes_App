@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import FavoriteShareBar from '../components/FavoriteShareBar';
 import useLocalStorage from '../hooks/useLocalStorage';
@@ -38,7 +38,7 @@ function RecipeInProgress(props) {
     );
   }
 
-  function createRecipeItemsId(query) {
+  const createRecipeItemsId = useCallback((query) => {
     if (query !== null) {
       const itemRecipe = query.map((items) => {
         if (isPathMeal) {
@@ -71,9 +71,9 @@ function RecipeInProgress(props) {
       return itemRecipe;
     }
     return query;
-  }
+  }, [isPathMeal]);
 
-  async function setRecipes() {
+  const setRecipes = useCallback(async () => {
     let response;
     if (isPathMeal) {
       response = await fetchSearchMealsId(id);
@@ -82,28 +82,25 @@ function RecipeInProgress(props) {
     }
     const recipes = createRecipeItemsId(response);
     setRecipesId(recipes);
-  }
+  }, [createRecipeItemsId, id, isPathMeal]);
 
-  const setValueToCheckList = () => {
+  const setValueToCheckList = useCallback(() => {
     console.log(ingredients);
     if (ingredients[origin] && Object.keys(ingredients[origin]).includes(id)) {
       setCheckList(ingredients[origin][id]);
     }
-  };
-
-  useEffect(() => {
-    setRecipes();
-    // setCheckList(checkIfExist(ingredients[origin][id]));
-    setValueToCheckList();
-    console.log('i', ingredients);
-  }, []);
+  }, [id, ingredients, origin]);
 
   useEffect(() => {
     setIngredients((prevState) => ({
       ...prevState,
       [origin]: { ...prevState[origin], [id]: checkList },
     }));
-  }, [checkList]);
+
+    setRecipes();
+    // setCheckList(checkIfExist(ingredients[origin][id]));
+    setValueToCheckList();
+  }, [checkList, id, origin, setIngredients, setRecipes, setValueToCheckList]);
 
   const handleCheckChange = ({ target }) => {
     const { innerText } = target.parentElement;

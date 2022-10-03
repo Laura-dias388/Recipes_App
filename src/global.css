@@ -38,6 +38,8 @@ body {
   color: var(--base-title);
   display: flex;
   -webkit-font-smoothing: antialiased;
+  margin: auto;
+  max-width: 700px;
 }
 
 body, input, textarea, button {

@@ -1,7 +1,17 @@
 .mealsContainer {
   border-radius: 10px;
-  display: flex;
-  flex-wrap: wrap;
-  max-width: 764px;
+  display: grid;
+  gap: 0.5rem;
+  grid-template-columns: 150px 1fr 1fr 1fr;
+  margin: 0 auto 4rem;
+  max-width: 700px;
   padding: 64px 30px;
+}
+
+
+@media ( max-width : 400px ) {
+
+  .mealsContainer {
+    grid-template-columns: 1fr 1fr;
+  }
 }

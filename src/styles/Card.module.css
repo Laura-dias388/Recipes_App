@@ -1,8 +1,6 @@
 .cardContainer {
   border-radius: 10px;
-  display: flex;
-  margin: 0 15px 15px 0;
-  max-width: 100vh;
+  flex-basis: 350px;
   overflow: hidden;
   position: relative;
 }
@@ -30,5 +28,19 @@
   padding: 7rem 1rem 1rem;
   position: absolute;
   right: 0;
-  width: 100%;
+  width: 100;
+}
+
+@media ( max-width : 400px ) {
+
+  .cardContainer img {
+    height: 200px;
+    object-fit: cover;
+    width: 300px;
+
+  }
+
+  .cardContent {
+    width: 300px;
+  }
 }

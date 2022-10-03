@@ -1,15 +1,14 @@
 .recipeContainer {
+  display: flex;
+  gap: 1rem;
   padding: 10px 30px;
-  width: 700px;
 }
 
 .recipeContent {
   background-color: transparent;
   border: none;
   color: var(--button-secondary);
-  margin-left: 10px;
   padding: 7px 20px;
-
 }
 
 .recipeContent[ data-state = 'on' ] {

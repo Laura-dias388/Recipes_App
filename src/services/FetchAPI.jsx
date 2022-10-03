@@ -60,7 +60,7 @@ export const fetchDrinksFirstLetter = async (query) => {
 
 export const fetchMeals = async () => {
   try {
-    const data = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+    const data = await fetch('https://www.themealdb.com/api/json/v1/1/gsearch.php?s=');
     const response = await data.json();
     return response.meals;
   } catch (error) {

@@ -1,0 +1,9 @@
+.footerContainer {
+  background-color: white;
+  bottom: 0;
+  margin: 0 auto;
+  padding: 24px 40px;
+  position: fixed;
+  width: 700px;
+}
+

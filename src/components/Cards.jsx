@@ -8,7 +8,6 @@ function Cards({ recipe, index }) {
       data-testid={ `${index}-recipe-card` }
       className={ styles.cardContainer }
     >
-
       <img
         src={ recipe.image }
         alt=""
