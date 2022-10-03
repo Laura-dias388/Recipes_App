@@ -8,10 +8,6 @@ import renderWithRouter from './helpers/renderWithRouter';
 const MEAL_LINK = '/meals/52771/in-progress';
 
 describe('Testa a página FavoriteRecipes', () => {
-// global.fetch = jest.fn(async () => ({
-//   json: async () => (fetchTotal),
-// }));
-
   beforeEach(() => {
     jest.spyOn(global, 'fetch').mockImplementation(fetch); // Obrigado Mentoria :)
   });
