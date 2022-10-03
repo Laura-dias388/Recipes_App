@@ -16,7 +16,7 @@ function Provider({ children }) {
   const { pathname } = useLocation();
   function createRecipeItems(query) {
     if (query !== null) {
-      const itemRecipe = query.map((items) => {
+      const itemRecipe = query?.map((items) => {
         if (pathname === '/meals' || pathname === '/meals/:id') {
           const createRecipe = {
             id: items.idMeal,
