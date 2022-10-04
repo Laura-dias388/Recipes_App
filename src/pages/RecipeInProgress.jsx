@@ -94,7 +94,7 @@ function RecipeInProgress(props) {
     setRecipes();
     // setCheckList(checkIfExist(ingredients[origin][id]));
     setValueToCheckList();
-    console.log('i', ingredients);
+    // console.log('i', ingredients);
   }, []);
 
   useEffect(() => {
