@@ -14,8 +14,9 @@ function RecipeDetails(props) {
 
   const { path } = propItems.match;
   const { id } = propItems.match.params;
+  const origin = path.split('/')[1];
   const isPathMeal = path === '/meals/:id';
-  const isPathDrinks = path === '/drinks/:id';
+  // const isPathDrinks = path === '/drinks/:id';
   const typeUrl = isPathMeal ? 'meals' : 'drinks';
 
   const [recipesId, setRecipesId] = useState([]);
@@ -31,9 +32,9 @@ function RecipeDetails(props) {
   const NUM_SUGGESTION = 6;
 
   function setElements(items, element, qtd) {
-    return Object.values(items || []).slice(
-      Object.keys(items || []).indexOf(`${element}1`),
-      Object.keys(items || []).indexOf(`${element}${qtd}`) + 1,
+    return Object.values(items)?.slice(
+      Object.keys(items)?.indexOf(`${element}1`),
+      Object.keys(items).indexOf(`${element}${qtd}`) + 1,
     );
   }
 
@@ -122,15 +123,20 @@ function RecipeDetails(props) {
     }
   }
 
+  function checkIfIsInProgress(list = {}) {
+    return Object.keys(list).includes(id);
+  }
+
   function recipeProgressCheck() {
-    if (isPathMeal && inProgressRecipes.meals === id) {
-      setStateButton(true);
-    }
-    if (isPathDrinks && inProgressRecipes.drinks === id) {
-      setStateButton(true);
-    } else {
-      setStateButton(false);
-    }
+    // if (isPathMeal && inProgressRecipes.meals === id) {
+    //   setStateButton(true);
+    // }
+    // if (isPathDrinks && inProgressRecipes.drinks === id) {
+    //   setStateButton(true);
+    // } else {
+    //   setStateButton(false);
+    // }
+    setStateButton(checkIfIsInProgress(inProgressRecipes[origin]));
   }
 
   useEffect(() => {
@@ -209,7 +215,7 @@ function RecipeDetails(props) {
             type="button"
             data-testid="start-recipe-btn"
           >
-            {!stateButton ? 'Continue Recipe' : 'Start Recipe'}
+            {stateButton ? 'Continue Recipe' : 'Start Recipe'}
           </button>
         </Link>
       )}

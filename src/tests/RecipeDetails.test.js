@@ -1,12 +1,12 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-// import userEvent from '@testing-library/user-event';
+import userEvent from '@testing-library/user-event';
 import App from '../App';
 import fetch from '../../cypress/mocks/fetch';
 import renderWithRouter from './helpers/renderWithRouter';
 
 const DONE_RECIPE = {
-  id: '52771',
+  id: '52772',
   type: 'meal',
   nationality: 'Italian',
   category: 'Vegetarian',
@@ -21,7 +21,7 @@ const IN_PROGRESS_RECIPE = {
     178319: [' Hpnotiq - 2 oz', ' Pineapple Juice - 1 oz', ' Banana Liqueur - 1 oz'],
   },
   meals: {
-    52771: ['ALGO'],
+    52772: ['ALGO'],
   },
 };
 
@@ -32,8 +32,12 @@ describe('Testa a página do componente RecipeDetails', () => {
 
   test('Render page with drink recipe 178319 and test elements', async () => {
     localStorage.setItem('inProgressRecipes', JSON.stringify(IN_PROGRESS_RECIPE));
+
     renderWithRouter(<App />, '/drinks/178319');
+
     expect(await screen.findByTestId('recipe-title')).toHaveTextContent('Aquamarine');
+
+    expect(screen.getByTestId('start-recipe-btn')).toHaveTextContent('Continue Recipe');
   });
 
   test('Render page with meal recipe 52771 and test elements', async () => {
@@ -41,6 +45,28 @@ describe('Testa a página do componente RecipeDetails', () => {
     localStorage.setItem('inProgressRecipes', JSON.stringify(IN_PROGRESS_RECIPE));
     renderWithRouter(<App />, '/meals/52771');
 
+    expect(await screen.findByTestId('recipe-category')).toHaveTextContent('Vegetarian');
+    expect(await screen.findByTestId('start-recipe-btn')).toHaveTextContent('Start Recipe');
+  });
+
+  test('Render page with meal recipe 52977 and test elements', async () => {
+    localStorage.setItem('doneRecipes', JSON.stringify({ id: '52977' }));
+    // localStorage.setItem('inProgressRecipes', JSON.stringify(IN_PROGRESS_RECIPE));
+    renderWithRouter(<App />, '/meals/52977');
+
     expect(await screen.findByTestId('recipe-title')).toHaveTextContent('Spicy Arrabiata Penne');
+    // expect(await screen.findByTestId('start-recipe-btn')).toHaveTextContent('Start Recipe');
+  });
+
+  test('share and favorite buttons', async () => {
+    window.document.execCommand = jest.fn().mockImplementation(() => 'copied'); // dica de Gabriel Gonçalves - 23A
+    renderWithRouter(<App />, '/meals/52771');
+
+    // to add favorite
+    userEvent.click(await screen.findByTestId('favorite-btn'));
+    // second click to test remove favorite
+    userEvent.click(await screen.findByTestId('favorite-btn'));
+
+    userEvent.click(screen.getByTestId('share-btn'));
   });
 });
