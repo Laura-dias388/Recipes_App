@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
@@ -10,13 +10,9 @@ import styles from '../styles/Meals.module.css';
 const MAX_CARDS = 12;
 
 function Meals() {
-  const { searchMealsResponse, fetchInitial } = useContext(RecipeContext);
+  const { searchMealsResponse } = useContext(RecipeContext);
   const recipeList = searchMealsResponse.length > 0
     && searchMealsResponse.slice(0, MAX_CARDS);
-
-  useEffect(() => {
-    fetchInitial();
-  }, []);
 
   return (
     <div>

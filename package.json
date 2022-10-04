@@ -6,7 +6,9 @@
     "node": "16"
   },
   "dependencies": {
+    "@radix-ui/react-label": "^1.0.0",
     "@radix-ui/react-popover": "1.0.0",
+    "@radix-ui/react-radio-group": "^1.0.0",
     "@radix-ui/react-toggle": "^1.0.0",
     "@radix-ui/react-toggle-group": "^1.0.0",
     "bootstrap": "^5.2.0",

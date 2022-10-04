@@ -1,0 +1,29 @@
+.headerContainer {
+  max-width: 700px;
+  padding: 20px 30px;
+}
+
+.headerWrapper {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.headerWrapperButton {
+  align-items: center;
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  padding: 0 0.5rem;
+}
+
+.headerButtonSearch, .headerButtonProfile {
+  background-color: var(--button-primary);
+  border: transparent;
+  border-radius: 10px;
+  color: var(white);
+  fill: var(white);
+  height: 40px;
+  width: 40px;
+}
+

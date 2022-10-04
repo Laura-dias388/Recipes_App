@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import { Link } from 'react-router-dom';
 import { fetchSearchMealsId,
   fetchSearchDrinksId,
@@ -122,23 +122,16 @@ function RecipeDetails(props) {
       setFindRecipeClass(true);
     }
   }
-
+  
   function checkIfIsInProgress(list = {}) {
     return Object.keys(list).includes(id);
   }
 
-  function recipeProgressCheck() {
-    // if (isPathMeal && inProgressRecipes.meals === id) {
-    //   setStateButton(true);
-    // }
-    // if (isPathDrinks && inProgressRecipes.drinks === id) {
-    //   setStateButton(true);
-    // } else {
-    //   setStateButton(false);
-    // }
+  const recipeProgressCheck = useCallback(() => {
     setStateButton(checkIfIsInProgress(inProgressRecipes[origin]));
-  }
-
+  }, [id, inProgressRecipes.drinks, inProgressRecipes.meals, isPathDrinks,
+    isPathMeal]);
+  
   useEffect(() => {
     setRecipes();
     recipeDoneCheck();
