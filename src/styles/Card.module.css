@@ -1,13 +1,12 @@
 .cardContainer {
-  border-radius: 10px;
-  flex-basis: 350px;
+  border-radius: 20px;
   overflow: hidden;
   position: relative;
 }
 
 .cardContainer img {
-  height: 150px;
-  width: 150px;
+  height: 180px;
+  width: 180px;
 }
 
 .cardContainer span {
@@ -28,7 +27,7 @@
   padding: 7rem 1rem 1rem;
   position: absolute;
   right: 0;
-  width: 100;
+  width: 180px;
 }
 
 @media ( max-width : 400px ) {

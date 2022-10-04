@@ -15,7 +15,7 @@ function Drinks() {
     && searchDrinksResponse.slice(0, MAX_CARDS);
 
   return (
-    <div>
+    <div className={ styles.glassContainer }>
       <Header />
       <Recipes />
       <div className={ styles.drinksContainer }>

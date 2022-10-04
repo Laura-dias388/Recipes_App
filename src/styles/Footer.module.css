@@ -1,9 +1,27 @@
 .footerContainer {
-  background-color: white;
   bottom: 0;
-  margin: 0 auto;
-  padding: 24px 40px;
   position: fixed;
   width: 700px;
 }
 
+.footerWrapper {
+  backdrop-filter: blur(5.5px);
+  background: rgba(0, 0, 0, 0.45);
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-around;
+  margin: 0 auto 1rem;
+  padding: 20px 40px;
+  width: 300px;
+
+}
+
+.footerContainer button {
+  background-color: transparent;
+  border: none;
+}
+
+.footerSeparator {
+  border-left: 1px solid var(--white);
+  height: 40px;
+}

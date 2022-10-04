@@ -2,6 +2,8 @@
 
   --background : #fafafa;
 
+  --theme-bg-color: rgba(16 18 27 / 40%);
+
   --base-title : #121212;
 
   --base-text : #d9d9d9;
@@ -40,6 +42,7 @@ body {
   -webkit-font-smoothing: antialiased;
   margin: auto;
   max-width: 700px;
+
 }
 
 body, input, textarea, button {

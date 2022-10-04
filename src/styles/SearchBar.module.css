@@ -1,0 +1,68 @@
+.searchBarContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 1rem auto;
+}
+
+.searchBarContainer [ type = 'text' ] {
+  border: 1px solid var(--base-border);
+  border-radius: 10px;
+  padding: 11.5px 38px;
+  width: 275px;
+}
+
+.searchBarContainer [ type = 'text' ]:hover {
+  border: 1px solid var(--button-primary);
+}
+
+.searchBarContainer input:focus {
+  border: 1px solid var(--button-primary);
+}
+
+.searchBarContainerRadio {
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.searchBarContainerRadioItems {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  padding: 0 1rem;
+}
+
+.searchBarRadioGroupItem {
+  align-items: center;
+  background-color: transparent;
+  border: 1px solid var(--button-secondary);
+  border-radius: 10px;
+  color: var(--button-secondary);
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+  padding: 5px 10px;
+
+}
+
+
+.searchBarRadioGroupItem[ data-state = 'checked' ] {
+  background-color: var(--button-primary);
+  color: var(--white);
+}
+
+.searchBarContainerButton {
+  align-items: center;
+  background-color: var(--button-primary);
+  border: none;
+  border-radius: 10px;
+  color: var(--white);
+  display: flex;
+  height: 38px;
+  justify-content: center;
+  margin: 1rem auto;
+  padding: 10px 30px;
+  width: 174px;
+}
