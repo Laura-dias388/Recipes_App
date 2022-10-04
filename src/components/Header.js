@@ -8,7 +8,7 @@ import styles from '../styles/Header.module.css';
 function Header() {
   const location = useLocation();
   const history = useHistory();
-  const [isSerachBarVisible, setIsSerachBarVisible] = useState(false);
+  const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
   let title = '';
   let isBtnSearchVisible = true;
 
@@ -51,7 +51,7 @@ function Header() {
         </div>
       </div>
       <div>
-        {isSerachBarVisible
+        {isSearchBarVisible
         && (
           <SearchBar />)}
       </div>

@@ -13,7 +13,6 @@ function Meals() {
   const { searchMealsResponse } = useContext(RecipeContext);
   const recipeList = searchMealsResponse.length > 0
     && searchMealsResponse.slice(0, MAX_CARDS);
-  console.log(searchMealsResponse);
 
   return (
     <div>

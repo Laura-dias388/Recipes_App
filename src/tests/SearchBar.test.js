@@ -8,6 +8,7 @@ import meals from '../../cypress/mocks/meals';
 import result from '../../cypress/mocks/beefMeals';
 import drinks from '../../cypress/mocks/drinks';
 import resultDrinks from '../../cypress/mocks/cocktailDrinks';
+// import fetchTotal from '../../cypress/mocks/fetch';
 
 const SEARCH_TOP_BTN = 'search-top-btn';
 const SEARCH_INPUT = 'search-input';
@@ -31,6 +32,10 @@ describe('Testes para o componente SerachBar', () => {
     // global.fetch = jest
     //   .fn(() => fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s='));
     renderWithRouter(<App />);
+
+    // global.fetch = jest.fn(async () => ({
+    //   json: async () => (fetchTotal),
+    // }));
 
     userEvent.type(screen.getByTestId('email-input'), 'teste@email.com');
     userEvent.type(screen.getByTestId('password-input'), '1234567');

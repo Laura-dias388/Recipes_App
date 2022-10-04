@@ -27,8 +27,8 @@ function FavoriteShareBar({ recipe }) {
   };
 
   useEffect(() => {
-    setIsFavorite((favorites || []).some((favorite) => favorite.id === recipe.id));
-  }, [favorites, recipe.id]);
+    setIsFavorite(favorites?.some((favorite) => favorite.id === recipe.id));
+  }, [favorites]);
 
   const copyLinkToClipboard = () => {
     const splitedPath = location.pathname.split('/');
