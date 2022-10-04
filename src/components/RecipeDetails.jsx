@@ -16,7 +16,7 @@ function RecipeDetails(props) {
   const { id } = propItems.match.params;
   const origin = path.split('/')[1];
   const isPathMeal = path === '/meals/:id';
-  // const isPathDrinks = path === '/drinks/:id';
+  const isPathDrinks = path === '/drinks/:id';
   const typeUrl = isPathMeal ? 'meals' : 'drinks';
 
   const [recipesId, setRecipesId] = useState([]);
@@ -122,7 +122,7 @@ function RecipeDetails(props) {
       setFindRecipeClass(true);
     }
   }
-  
+
   function checkIfIsInProgress(list = {}) {
     return Object.keys(list).includes(id);
   }
@@ -131,7 +131,7 @@ function RecipeDetails(props) {
     setStateButton(checkIfIsInProgress(inProgressRecipes[origin]));
   }, [id, inProgressRecipes.drinks, inProgressRecipes.meals, isPathDrinks,
     isPathMeal]);
-  
+
   useEffect(() => {
     setRecipes();
     recipeDoneCheck();
