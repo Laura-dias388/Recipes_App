@@ -36,7 +36,7 @@ function Header() {
            && (
              <button
                type="button"
-               onClick={ () => setIsSerachBarVisible(!isSerachBarVisible) }
+               onClick={ () => setIsSearchBarVisible(!isSearchBarVisible) }
                className={ styles.headerButtonSearch }
              >
                <img data-testid="search-top-btn" src={ searchIcon } alt="search" />
