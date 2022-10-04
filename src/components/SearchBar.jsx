@@ -1,7 +1,10 @@
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
+import * as RadioGroup from '@radix-ui/react-radio-group';
+import * as Label from '@radix-ui/react-label';
 import RecipeContext from '../context/Context';
+import styles from '../styles/SearchBar.module.css';
 
 export default function SearchBar() {
   /*  const URL_BASE = `https://www.themealdb.com/api/json/v1/1/`;
@@ -35,54 +38,63 @@ export default function SearchBar() {
   }
 
   return (
-    <form onSubmit={ handleSubmit(handleFilterSearchSubmit) }>
-      <input
-        data-testid="search-input"
-        type="text"
-        placeholder="Type Your Search"
-        { ...register('inputValue') }
-      />
+    <form
+      onSubmit={ handleSubmit(handleFilterSearchSubmit) }
+      className={ styles.searchBarContainer }
+    >
+      <div className={ styles.searchBarContainerRadio }>
 
-      <label htmlFor="ingredient">
         <input
-          data-testid="ingredient-search-radio"
-          type="radio"
-          name="radio-options"
-          value="ingredient"
-          id="ingredient"
-          { ...register('checkSearch') }
+          data-testid="search-input"
+          type="text"
+          placeholder="Type Your Search"
+          { ...register('inputValue') }
         />
-        Ingredient
-      </label>
 
-      <label htmlFor="search">
-        <input
-          data-testid="name-search-radio"
-          type="radio"
-          name="radio-options"
-          value="name"
-          id="search"
-          { ...register('checkSearch') }
-        />
-        Name
-      </label>
-      <label htmlFor="first-letter">
-        <input
-          data-testid="first-letter-search-radio"
-          type="radio"
-          name="radio-options"
-          value="first-letter"
-          id="first-letter"
-          { ...register('checkSearch') }
-        />
-        First Letter
-      </label>
+        <RadioGroup.Root className={ styles.searchBarContainerRadioItems }>
+          <RadioGroup.Item
+            id="ingredient"
+            className={ styles.searchBarRadioGroupItem }
+            data-testid="ingredient-search-radio"
+            value="ingredient"
+            { ...register('checkSearch') }
+
+          >
+            <Label.Root htmlFor="ingredient">Ingredients</Label.Root>
+          </RadioGroup.Item>
+
+          <RadioGroup.Item
+            value="name"
+            id="search"
+            className={ styles.searchBarRadioGroupItem }
+            data-testid="name-search-radio"
+            { ...register('checkSearch') }
+
+          >
+            <Label.Root htmlFor="Name">Name</Label.Root>
+          </RadioGroup.Item>
+
+          <RadioGroup.Item
+            value="first-letter"
+            id="first-letter"
+            className={ styles.searchBarRadioGroupItem }
+            data-testid="first-letter-search-radio"
+            { ...register('checkSearch') }
+
+          >
+            <Label.Root htmlFor="first-letter">First Letter</Label.Root>
+          </RadioGroup.Item>
+        </RadioGroup.Root>
+
+      </div>
       <button
         data-testid="exec-search-btn"
         type="submit"
+        className={ styles.searchBarContainerButton }
       >
-        Enviar
+        Filter
       </button>
+
     </form>
   );
 }
