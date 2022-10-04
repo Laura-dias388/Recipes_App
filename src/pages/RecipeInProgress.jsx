@@ -38,11 +38,10 @@ function RecipeInProgress(props) {
     );
   }
 
-  const createRecipeItemsId = useCallback((query) => {
+  function createRecipeItemsId(query) {
     // if (query !== null) { //comentada para passar nos testes. Se voltar o código, avise o Rubens
     const itemRecipe = query.map((items) => {
       if (isPathMeal) {
-
         const createRecipe = {
           id: items.idMeal,
           name: items.strMeal,
@@ -68,13 +67,13 @@ function RecipeInProgress(props) {
         alcoholicOrNot: items.strAlcoholic,
       };
       return createRecipe;
-      });
+    });
     return itemRecipe;
     // }
     // return query; //comentada para passar nos testes. Se voltar o código, avise o Rubens
-  }, [isPathMeal]);
+  }
 
-  const setRecipes = useCallback(async () => {
+  async function setRecipes() {
     let response = null;
     if (isPathMeal) {
       response = await fetchSearchMealsId(id);
@@ -83,25 +82,27 @@ function RecipeInProgress(props) {
     }
     const recipes = createRecipeItemsId(response);
     setRecipesId(recipes);
-  }, [createRecipeItemsId, id, isPathMeal]);
-
-  const setValueToCheckList = useCallback(() => {
+  }
+  const setValueToCheckList = () => {
     console.log(ingredients);
     if (ingredients[origin] && Object.keys(ingredients[origin]).includes(id)) {
       setCheckList(ingredients[origin][id]);
     }
-  }, [id, ingredients, origin]);
+  };
+
+  useEffect(() => {
+    setRecipes();
+    // setCheckList(checkIfExist(ingredients[origin][id]));
+    setValueToCheckList();
+    console.log('i', ingredients);
+  }, []);
 
   useEffect(() => {
     setIngredients((prevState) => ({
       ...prevState,
       [origin]: { ...prevState[origin], [id]: checkList },
     }));
-
-    setRecipes();
-    // setCheckList(checkIfExist(ingredients[origin][id]));
-    setValueToCheckList();
-  }, [checkList, id, origin, setIngredients, setRecipes, setValueToCheckList]);
+  }, [checkList]);
 
   const handleCheckChange = ({ target }) => {
     const { innerText } = target.parentElement;
