@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
-import * as RadioGroup from '@radix-ui/react-radio-group';
-import * as Label from '@radix-ui/react-label';
+// import * as RadioGroup from '@radix-ui/react-radio-group';
+// import * as Label from '@radix-ui/react-label';
 import RecipeContext from '../context/Context';
 import styles from '../styles/SearchBar.module.css';
 
