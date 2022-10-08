@@ -56,7 +56,7 @@ function Provider({ children }) {
     }
     if (response === null) {
       setSearchMealsResponse([]);
-      return globalAlert('Sorry, we haven\'t found any recipes for these filters.');
+      return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
     const filteredMeals = createRecipeItems(response);
     if (response.length === 1) {
@@ -87,7 +87,7 @@ function Provider({ children }) {
     const filteredDrinks = createRecipeItems(response);
     if (response === null) {
       setSearchDrinksResponse([]);
-      return globalAlert('Sorry, we haven\'t found any recipes for these filters.');
+      return global.alert('Sorry, we haven\'t found any recipes for these filters.');
     }
     if (response.length === 1) {
       const filterId = response.map((state) => state.idDrink).toString();
