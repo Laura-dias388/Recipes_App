@@ -32,6 +32,7 @@ function Profile() {
           data-testid="profile-logout-btn"
           onClick={ () => {
             localStorage.clear();
+            localStorage.clear();
             history.push('/');
           } }
         >

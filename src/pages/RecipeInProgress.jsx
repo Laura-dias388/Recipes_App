@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import FavoriteShareBar from '../components/FavoriteShareBar';
 import useLocalStorage from '../hooks/useLocalStorage';
