@@ -1,7 +1,7 @@
 import { ArrowRight } from 'phosphor-react';
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
-import useLocalStorage from '../hooks/useLocalStorage';
+// import useLocalStorage from '../hooks/useLocalStorage';
 import style from '../styles/Login.module.css';
 
 function Login() {
@@ -9,13 +9,13 @@ function Login() {
   console.log(email);
   const [password, setPassword] = useState('');
   const [isEnterDisabled, setIsEnterDisabled] = useState(true);
-  const [user, setUser] = useLocalStorage('user', {});
-  console.log(user);
+  // const [user, setUser] = useLocalStorage('user', {});
+  // console.log(user);
   const history = useHistory();
 
   const validateEmail = (emailToValidate) => /\S+@\S+\.\S+/.test(emailToValidate);
-  useLocalStorage('mealsToken', 1);
-  useLocalStorage('drinksToken', 1);
+  // useLocalStorage('mealsToken', 1);
+  // useLocalStorage('drinksToken', 1);
 
   useEffect(() => {
     const MIN_PASSWORD_LENGTH = 6;
@@ -26,10 +26,13 @@ function Login() {
     ].every(Boolean);
 
     setIsEnterDisabled(!isTrue);
-    setUser({ email });
+    // setUser({ email });
   }, [email, password]);
 
   const handlerButton = () => {
+    localStorage.setItem('user', JSON.stringify({ email }));
+    localStorage.setItem('mealsToken', 1);
+    localStorage.setItem('drinksToken', 1);
     history.push('/meals');
   };
 

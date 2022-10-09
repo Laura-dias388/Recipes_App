@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { useLocation } from 'react-router-dom';
-import * as RadioGroup from '@radix-ui/react-radio-group';
-import * as Label from '@radix-ui/react-label';
+// import * as RadioGroup from '@radix-ui/react-radio-group';
+// import * as Label from '@radix-ui/react-label';
 import RecipeContext from '../context/Context';
 import styles from '../styles/SearchBar.module.css';
 
@@ -20,6 +20,7 @@ export default function SearchBar() {
   const { pathname } = useLocation();
 
   function handleFilterSearchSubmit(data) {
+    console.log('target', data);
     if (data.checkSearch === 'first-letter' && data.inputValue.length > 1) {
       reset();
       global.alert('Your search must have only 1 (one) character');
@@ -51,7 +52,7 @@ export default function SearchBar() {
           { ...register('inputValue') }
         />
 
-        <RadioGroup.Root className={ styles.searchBarContainerRadioItems }>
+        {/* <RadioGroup.Root className={ styles.searchBarContainerRadioItems }>
           <RadioGroup.Item
             id="ingredient"
             className={ styles.searchBarRadioGroupItem }
@@ -64,11 +65,11 @@ export default function SearchBar() {
           </RadioGroup.Item>
 
           <RadioGroup.Item
-            value="name"
             id="search"
             className={ styles.searchBarRadioGroupItem }
             data-testid="name-search-radio"
-            { ...register('checkSearch') }
+            value="name"
+            { ...register('checkSearch', { value: 'name' }) }
 
           >
             <Label.Root htmlFor="Name">Name</Label.Root>
@@ -84,7 +85,42 @@ export default function SearchBar() {
           >
             <Label.Root htmlFor="first-letter">First Letter</Label.Root>
           </RadioGroup.Item>
-        </RadioGroup.Root>
+        </RadioGroup.Root> */}
+
+        <label htmlFor="ingredient">
+          <input
+            data-testid="ingredient-search-radio"
+            type="radio"
+            name="radio-options"
+            value="ingredient"
+            id="ingredient"
+            { ...register('checkSearch') }
+          />
+          Ingredient
+        </label>
+
+        <label htmlFor="search">
+          <input
+            data-testid="name-search-radio"
+            type="radio"
+            name="radio-options"
+            value="name"
+            id="search"
+            { ...register('checkSearch') }
+          />
+          Name
+        </label>
+        <label htmlFor="first-letter">
+          <input
+            data-testid="first-letter-search-radio"
+            type="radio"
+            name="radio-options"
+            value="first-letter"
+            id="first-letter"
+            { ...register('checkSearch') }
+          />
+          First Letter
+        </label>
 
       </div>
       <button
