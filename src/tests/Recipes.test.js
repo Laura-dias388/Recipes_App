@@ -8,16 +8,24 @@ describe('Teste o componente Recipes.', () => {
   test('Teste se existe o botão All.', () => {
     renderWithRouter(<App />, '/meals');
 
-    expect(screen.getByTestId('All-category-filter')).toBeInTheDocument();
+    const categoryButtons = screen.getAllByTestId(/category-filter/i);
+    expect(categoryButtons).toHaveLength(6);
 
-    userEvent.click(screen.getByTestId('Beef-category-filter'));
+    categoryButtons.forEach((button) => {
+      userEvent.click(button);
+    });
+    userEvent.click(screen.getByTestId('All-category-filter'));
   });
 
   test('filter in drinks page.', () => {
     renderWithRouter(<App />, '/drinks');
 
-    expect(screen.getByTestId('All-category-filter')).toBeInTheDocument();
+    const categoryButtons = screen.getAllByTestId(/category-filter/i);
+    expect(categoryButtons).toHaveLength(6);
 
-    userEvent.click(screen.getByTestId('Shake-category-filter'));
+    categoryButtons.forEach((button) => {
+      userEvent.click(button);
+    });
+    userEvent.click(screen.getByTestId('All-category-filter'));
   });
 });

@@ -10,11 +10,13 @@ import { fetchSearchMealsId,
 const styles = 'styles';
 
 function RecipeInProgress(props) {
+  const [getItems] = useLocalStorage('doneRecipes', []);
   const propItems = props;
   const { path } = propItems.match;
   const { id } = propItems.match.params;
   const isPathMeal = path === '/meals/:id/in-progress';
   const origin = path.split('/')[1];
+  // const location = useLocation();
 
   const initialState = {
     [origin]: {
@@ -53,6 +55,7 @@ function RecipeInProgress(props) {
           measures: setElements(items, 'strMeasure', NUM_IGREDIENTS_MEAL),
           nationality: items.strArea,
           alcoholicOrNot: '',
+          tags: items.strTags || '',
         };
         return createRecipe;
       }
@@ -65,6 +68,7 @@ function RecipeInProgress(props) {
         ingredients: setElements(items, 'strIngredient', NUM_IGREDIENTS_DRINK),
         measures: setElements(items, 'strMeasure', NUM_IGREDIENTS_DRINK),
         alcoholicOrNot: items.strAlcoholic,
+        tags: items.strTags || '',
       };
       return createRecipe;
     });
@@ -111,6 +115,23 @@ function RecipeInProgress(props) {
     } else {
       setCheckList(checkList.filter((checkValue) => checkValue !== innerText));
     }
+  };
+
+  const resultItems = recipesId[0];
+  console.log(recipesId, 'recipesId');
+  console.log(resultItems, 'resultItems');
+  const data = new Date();
+  // const origins = location.pathname.split('/')[1];
+  const keyRecipe = {
+    id: resultItems?.id,
+    nationality: resultItems?.nationality || '',
+    type: origin.slice(0, origin.length - 1),
+    category: resultItems?.category,
+    name: resultItems?.name,
+    image: resultItems?.image,
+    doneDate: data.toLocaleString(),
+    alcoholicOrNot: resultItems?.alcoholicOrNot,
+    tags: resultItems?.tags.split(',') || '',
   };
 
   return (
@@ -173,7 +194,11 @@ function RecipeInProgress(props) {
           type="submit"
           disabled={ checkList?.length !== recipesId[0]?.ingredients
             .filter((ingredient) => ingredient?.length > 0).length }
-          onClick={ () => { history.push('/done-recipes'); } }
+          onClick={ () => {
+            localStorage.setItem('doneRecipes', JSON.stringify([...getItems, keyRecipe]));
+            history.push('/done-recipes');
+            // setGetItens(keyRecipe);
+          } }
         >
           Finish Recipe
         </button>

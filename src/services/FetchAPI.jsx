@@ -1,119 +1,71 @@
 export const fetchMealsIngredient = async (query) => {
-  try {
-    const data = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${query}`);
-    const response = await data.json();
-    return response.meals;
-  } catch (error) {
-    return error;
-  }
+  const data = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?i=${query}`);
+  const response = await data.json();
+  return response.meals;
 };
 
 export const fetchMealsName = async (query) => {
-  try {
-    const data = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
-    const response = await data.json();
-    return response.meals;
-  } catch (error) {
-    return error;
-  }
+  const data = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?s=${query}`);
+  const response = await data.json();
+  return response.meals;
 };
 
 export const fetchMealsFirstLetter = async (query) => {
-  try {
-    const data = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${query}`);
-    const response = await data.json();
-    return response.meals;
-  } catch (error) {
-    return error;
-  }
+  const data = await fetch(`https://www.themealdb.com/api/json/v1/1/search.php?f=${query}`);
+  const response = await data.json();
+  return response.meals;
 };
 
 export const fetchDrinksIngredients = async (query) => {
-  try {
-    const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${query}`);
-    const response = await data.json();
-    return response.drinks;
-  } catch (error) {
-    return error;
-  }
+  const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${query}`);
+  const response = await data.json();
+  return response.drinks;
 };
 
 export const fetchDrinksName = async (query) => {
-  try {
-    const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`);
-    const response = await data.json();
-    return response.drinks;
-  } catch (error) {
-    return error;
-  }
+  const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${query}`);
+  const response = await data.json();
+  return response.drinks;
 };
 
 export const fetchDrinksFirstLetter = async (query) => {
-  try {
-    const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${query}`);
-    const response = await data.json();
-    return response.drinks;
-  } catch (error) {
-    return error;
-  }
+  const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${query}`);
+  const response = await data.json();
+  return response.drinks;
 };
 
 export const fetchMeals = async () => {
-  try {
-    const data = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
-    const response = await data.json();
-    return response.meals;
-  } catch (error) {
-    return error;
-  }
+  const data = await fetch('https://www.themealdb.com/api/json/v1/1/search.php?s=');
+  const response = await data.json();
+  return response.meals;
 };
 
 export const fetchDrinks = async () => {
-  try {
-    const data = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
-    const response = await data.json();
-    return response.drinks;
-  } catch (error) {
-    return error;
-  }
+  const data = await fetch('https://www.thecocktaildb.com/api/json/v1/1/search.php?s=');
+  const response = await data.json();
+  return response.drinks;
 };
 
 export const fetchCategoryMealsRequest = async (query) => {
-  try {
-    const data = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${query}`);
-    const response = await data.json();
-    return response.meals;
-  } catch (error) {
-    return error;
-  }
+  const data = await fetch(`https://www.themealdb.com/api/json/v1/1/filter.php?c=${query}`);
+  const response = await data.json();
+  return response.meals;
 };
 
 export const fetchCategoryDrinksRequest = async (query) => {
-  try {
-    const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${query}`);
-    const response = await data.json();
-    return response.drinks;
-  } catch (error) {
-    return error;
-  }
+  const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${query}`);
+  const response = await data.json();
+  return response.drinks;
 };
 
 export const fetchSearchMealsId = async (query) => {
-  try {
-    const data = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${query}`);
-    const response = await data.json();
-    return response.meals;
-  } catch (error) {
-    return error;
-  }
+  const data = await fetch(`https://www.themealdb.com/api/json/v1/1/lookup.php?i=${query}`);
+  const response = await data.json();
+  return response.meals;
 };
 
 export const fetchSearchDrinksId = async (query) => {
-  try {
-    const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${query}`);
-    const response = await data.json();
-    return response.drinks;
-  } catch (error) {
-    return error;
-  }
+  const data = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${query}`);
+  const response = await data.json();
+  return response.drinks;
 };
